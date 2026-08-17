@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>নবাগত — NOBOGOTO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070707;
+      --panel:#0d0d0d;
+      --text:#f5f5f5;
+      --muted:#858585;
+      --line:rgba(255,255,255,.12);
+      --accent:#ff7a00;
+      --accent-soft:rgba(255,122,0,.12);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,Arial,sans-serif;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+
+    /* subtle background */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(255,122,0,.09), transparent 25%),
+        radial-gradient(circle at 15% 70%, rgba(255,122,0,.045), transparent 28%);
+      z-index:-2;
+    }
+
+    .grid{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.045;
+      background-image:
+        linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px);
+      background-size:70px 70px;
+      mask-image:linear-gradient(to bottom,black,transparent 75%);
+      z-index:-1;
+    }
+
+    /* loader */
+    .loader{
+      position:fixed;
+      inset:0;
+      background:#050505;
+      display:grid;
+      place-items:center;
+      z-index:9999;
+      transition:opacity .7s ease, visibility .7s ease;
+    }
+    .loader.hide{opacity:0;visibility:hidden}
+    .loader-inner{text-align:center}
+    .loader-logo{
+      width:76px;height:76px;
+      object-fit:contain;
+      border-radius:20px;
+      margin-bottom:24px;
+      animation:logoPulse 1.5s ease-in-out infinite;
+    }
+    .loader-name{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:13px;
+      letter-spacing:7px;
+      color:#aaa;
+    }
+    .loader-line{
+      width:120px;height:1px;
+      background:var(--line);
+      margin:18px auto 0;
+      overflow:hidden;
+    }
+    .loader-line::after{
+      content:"";
+      display:block;
+      width:45%;
+      height:100%;
+      background:var(--accent);
+      animation:loading 1.1s ease-in-out infinite;
+    }
+
+    @keyframes loading{
+      0%{transform:translateX(-130%)}
+      100%{transform:translateX(320%)}
+    }
+    @keyframes logoPulse{
+      50%{transform:scale(.92);opacity:.65}
+    }
+
+    /* nav */
+    .nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 5vw;
+      border-bottom:1px solid transparent;
+      z-index:100;
+      transition:.35s ease;
+    }
+    .nav.scrolled{
+      background:rgba(7,7,7,.78);
+      backdrop-filter:blur(18px);
+      border-color:var(--line);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+    .brand img{
+      width:32px;height:32px;
+      object-fit:contain;
+      border-radius:9px;
+    }
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      border:1px solid var(--line);
+      padding:12px 17px;
+      transition:.25s ease;
+    }
+    .nav-link:hover{
+      border-color:var(--accent);
+      background:var(--accent-soft);
+      transform:translateY(-2px);
+    }
+
+    /* hero */
+    .hero{
+      min-height:100svh;
+      padding:150px 5vw 90px;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+    .hero-content{max-width:1100px}
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--accent);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      margin-bottom:24px;
+      opacity:0;
+      transform:translateY(20px);
+      animation:reveal .9s .3s forwards;
+    }
+    .eyebrow span{
+      width:38px;height:1px;background:var(--accent);
+    }
+    .hero h1{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(76px,15vw,220px);
+      line-height:.78;
+      letter-spacing:-8px;
+      font-weight:700;
+      max-width:1200px;
+      opacity:0;
+      transform:translateY(35px);
+      animation:reveal 1s .45s forwards;
+    }
+    .hero h1 .bn{display:block}
+    .hero h1 .en{
+      display:block;
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,255,255,.7);
+      margin-left:clamp(20px,8vw,130px);
+    }
+    .hero-bottom{
+      margin-top:70px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:30px;
+      opacity:0;
+      transform:translateY(25px);
+      animation:reveal .9s .7s forwards;
+    }
+    .tagline{
+      max-width:420px;
+      color:#999;
+      font-size:15px;
+      line-height:1.8;
+    }
+    .hero-join{
+      flex:none;
+      display:inline-flex;
+      align-items:center;
+      gap:14px;
+      background:var(--accent);
+      color:#050505;
+      padding:17px 23px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      transition:.3s ease;
+    }
+    .hero-join:hover{transform:translateY(-4px);box-shadow:0 16px 45px rgba(255,122,0,.18)}
+    .arrow{font-size:17px}
+
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+    /* sections */
+    .section{
+      padding:120px 5vw;
+      border-top:1px solid var(--line);
+    }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:30px;
+      margin-bottom:55px;
+    }
+    .section-number{
+      color:var(--accent);
+      font-size:11px;
+      letter-spacing:3px;
+      font-weight:700;
+    }
+    .section-title{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(42px,7vw,100px);
+      line-height:.9;
+      letter-spacing:-4px;
+    }
+    .section-description{
+      max-width:330px;
+      color:#777;
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    /* stats */
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      border-top:1px solid var(--line);
+      border-left:1px solid var(--line);
+    }
+    .stat{
+      min-height:270px;
+      padding:45px;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+    }
+    .stat::after{
+      content:"";
+      position:absolute;
+      width:180px;height:180px;
+      right:-90px;bottom:-90px;
+      border-radius:50%;
+      background:var(--accent);
+      filter:blur(70px);
+      opacity:.07;
+      transition:.4s ease;
+    }
+    .stat:hover::after{opacity:.18}
+    .stat-label{
+      color:#777;
+      font-size:11px;
+      letter-spacing:2.5px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .stat-value{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(65px,9vw,125px);
+      line-height:1;
+      letter-spacing:-5px;
+      margin-top:55px;
+      font-weight:600;
+    }
+    .live-dot{
+      display:inline-block;
+      width:7px;height:7px;
+      border-radius:50%;
+      background:var(--accent);
+      margin-left:12px;
+      vertical-align:middle;
+      box-shadow:0 0 18px var(--accent);
+      animation:blink 1.2s infinite;
+    }
+    @keyframes blink{50%{opacity:.25}}
+
+    /* voice */
+    .voice-list{
+      border-top:1px solid var(--line);
+    }
+    .voice-channel{
+      min-height:150px;
+      border-bottom:1px solid var(--line);
+      display:grid;
+      grid-template-columns:minmax(180px,1fr) 2fr 100px;
+      align-items:center;
+      gap:25px;
+      transition:.3s ease;
+      padding:25px 0;
+    }
+    .voice-channel:hover{
+      padding-left:20px;
+      padding-right:20px;
+      background:rgba(255,122,0,.025);
+    }
+    .channel-name{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(22px,3vw,38px);
+      letter-spacing:-1px;
+    }
+    .channel-count{
+      color:var(--accent);
+      font-size:11px;
+      letter-spacing:1.5px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .avatars{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .avatar-wrap{
+      position:relative;
+      width:48px;height:48px;
+    }
+    .avatar{
+      width:48px;height:48px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid rgba(255,255,255,.14);
+      background:#151515;
+      display:block;
+    }
+    .avatar-wrap::after{
+      content:"";
+      position:absolute;
+      width:9px;height:9px;
+      right:0;bottom:1px;
+      border-radius:50%;
+      background:#35d16f;
+      border:2px solid #080808;
+    }
+    .user-tooltip{
+      position:absolute;
+      bottom:60px;
+      left:50%;
+      transform:translateX(-50%) translateY(5px);
+      background:#111;
+      border:1px solid var(--line);
+      padding:7px 10px;
+      white-space:nowrap;
+      font-size:10px;
+      opacity:0;
+      pointer-events:none;
+      transition:.2s ease;
+      z-index:5;
+    }
+    .avatar-wrap:hover .user-tooltip{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+    .empty{
+      color:#555;
+      font-size:13px;
+    }
+
+    /* join */
+    .join{
+      min-height:65vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      border-top:1px solid var(--line);
+      padding:100px 5vw;
+    }
+    .join-inner{max-width:1000px}
+    .join-kicker{
+      color:var(--accent);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      margin-bottom:25px;
+    }
+    .join h2{
+      font-family:"Space Grotesk",sans-serif;
+      font-size:clamp(60px,11vw,160px);
+      line-height:.82;
+      letter-spacing:-6px;
+      margin-bottom:55px;
+    }
+    .join h2 span{
+      color:transparent;
+      -webkit-text-stroke:1px rgba(255,255,255,.65);
+    }
+    .join-button{
+      display:inline-flex;
+      align-items:center;
+      gap:15px;
+      padding:18px 25px;
+      background:var(--accent);
+      color:#050505;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+      transition:.3s;
+    }
+    .join-button:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 55px rgba(255,122,0,.2);
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 5vw;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      color:#555;
+      font-size:11px;
+      letter-spacing:.4px;
+    }
+    .developer a{
+      color:#999;
+      font-weight:700;
+      transition:.2s;
+    }
+    .developer a:hover{color:var(--accent)}
+
+    .sync{
+      position:fixed;
+      right:22px;
+      bottom:20px;
+      z-index:90;
+      padding:9px 12px;
+      background:rgba(10,10,10,.82);
+      backdrop-filter:blur(12px);
+      border:1px solid var(--line);
+      color:#666;
+      font-size:9px;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+    }
+    .sync i{
+      display:inline-block;
+      width:5px;height:5px;
+      border-radius:50%;
+      background:var(--accent);
+      margin-right:6px;
+      vertical-align:middle;
+    }
+
+    /* mobile */
+    @media(max-width:700px){
+      .nav{height:68px;padding:0 20px}
+      .brand{font-size:12px}
+      .nav-link{padding:10px 12px;font-size:9px}
+      .hero{padding:125px 20px 70px}
+      .hero h1{font-size:20vw;letter-spacing:-3px}
+      .hero h1 .en{margin-left:8vw}
+      .hero-bottom{display:block;margin-top:45px}
+      .hero-join{margin-top:25px}
+      .section{padding:80px 20px}
+      .section-head{display:block;margin-bottom:35px}
+      .section-description{margin-top:20px}
+      .stats{grid-template-columns:1fr}
+      .stat{min-height:210px;padding:30px}
+      .stat-value{margin-top:40px;font-size:21vw}
+      .voice-channel{
+        grid-template-columns:1fr;
+        gap:15px;
+        padding:28px 0;
+      }
+      .avatars{max-width:100%}
+      .channel-count{order:3}
+      .join{padding:80px 20px}
+      .join h2{font-size:20vw;letter-spacing:-3px}
+      footer{padding:24px 20px;display:block}
+      .developer{margin-top:10px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid"></div>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <img class="loader-logo" id="loaderLogo" alt="NOBOGOTO">
+      <div class="loader-name">NOBOGOTO</div>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top">
+      <img id="navLogo" alt="NOBOGOTO">
+      <span id="navBrand">নবাগত</span>
+    </a>
+    <a class="nav-link" id="navInvite" href="#" target="_blank" rel="noopener">
+      Join Discord <span>↗</span>
+    </a>
+  </nav>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> Discord Community</div>
+
+        <h1>
+          <span class="bn" id="brandBangla">নবাগত</span>
+          <span class="en" id="brandEnglish">NOBOGOTO</span>
+        </h1>
+
+        <div class="hero-bottom">
+          <p class="tagline" id="tagline">
+            A community built for conversations, connections and good times.
+          </p>
+
+          <a class="hero-join" id="heroInvite" href="#" target="_blank" rel="noopener">
+            Join Community <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-number">01 / LIVE COMMUNITY</div>
+          <h2 class="section-title">RIGHT NOW.</h2>
+        </div>
+        <p class="section-description">
+          Live Discord server statistics. Automatically synchronized every 3 seconds.
+        </p>
+      </div>
+
+      <div class="stats">
+        <article class="stat">
+          <div class="stat-label">Total Members</div>
+          <div class="stat-value" id="totalMembers">—</div>
+        </article>
+
+        <article class="stat">
+          <div class="stat-label">Online Now <span class="live-dot"></span></div>
+          <div class="stat-value" id="onlineMembers">—</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Voice -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-number">02 / LIVE VOICE</div>
+          <h2 class="section-title">IN VOICE.</h2>
+        </div>
+        <p class="section-description">
+          See who's currently hanging out in Nobogoto voice channels.
+        </p>
+      </div>
+
+      <div class="voice-list" id="voiceList">
+        <div class="voice-channel">
+          <div class="channel-name">Loading...</div>
+          <div class="avatars"></div>
+          <div class="channel-count">Syncing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join -->
+    <section class="join">
+      <div class="join-inner">
+        <div class="join-kicker">03 / JOIN THE COMMUNITY</div>
+        <h2>SEE YOU<br><span>INSIDE.</span></h2>
+        <a class="join-button" id="bottomInvite" href="#" target="_blank" rel="noopener">
+          Join Nobogoto <span>↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div class="sync"><i></i><span id="syncText">Waiting for sync</span></div>
+
+  <footer>
+    <div>© <span id="year"></span> <span id="footerName">NOBOGOTO</span></div>
+
+    <!-- Developer Mark: click the developer name to open your link -->
+    <div class="developer">
+      Developed by
+      <a id="developerLink" href="#" target="_blank" rel="noopener">YOUR NAME</a>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      ============================================================
+      NOBOGOTO CONFIG
+      ============================================================
+      Change ONLY these values.
+
+      IMPORTANT:
+      - DISCORD_SERVER_ID: your Discord server ID
+      - DISCORD_INVITE: your permanent Discord invite
+      - LOGO_URL: direct image URL
+      - API_URL: your backend endpoint
+
+      The browser must NOT contain a Discord bot token.
+      Your backend/API should communicate with Discord securely.
+      ============================================================
+    */
+
+    const CONFIG = {
+      DISCORD_SERVER_ID: "YOUR_SERVER_ID",
+      DISCORD_INVITE: "https://discord.gg/YOUR_INVITE",
+      LOGO_URL: "https://YOUR-DIRECT-IMAGE-URL/logo.png",
+
+      BRAND_BANGLA: "নবাগত",
+      BRAND_ENGLISH: "NOBOGOTO",
+      TAGLINE: "A community built for conversations, connections and good times.",
+
+      // Put your secure backend endpoint here.
+      // Example: https://api.example.com/api/server
+      API_URL: "https://YOUR-DOMAIN.COM/api/server",
+
+      // Developer credit
+      DEVELOPER_NAME: "YOUR NAME",
+      DEVELOPER_URL: "https://example.com",
+
+      // Sync interval
+      SYNC_INTERVAL: 3000
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+
+    function applyConfig() {
+      document.title = `${CONFIG.BRAND_BANGLA} — ${CONFIG.BRAND_ENGLISH}`;
+
+      $("#navBrand").textContent = CONFIG.BRAND_BANGLA;
+      $("#brandBangla").textContent = CONFIG.BRAND_BANGLA;
+      $("#brandEnglish").textContent = CONFIG.BRAND_ENGLISH;
+      $("#footerName").textContent = CONFIG.BRAND_ENGLISH;
+      $("#tagline").textContent = CONFIG.TAGLINE;
+
+      ["#loaderLogo", "#navLogo"].forEach(selector => {
+        $(selector).src = CONFIG.LOGO_URL;
+      });
+
+      ["#navInvite", "#heroInvite", "#bottomInvite"].forEach(selector => {
+        $(selector).href = CONFIG.DISCORD_INVITE;
+      });
+
+      $("#developerLink").textContent = CONFIG.DEVELOPER_NAME;
+      $("#developerLink").href = CONFIG.DEVELOPER_URL;
+
+      $("#year").textContent = new Date().getFullYear();
+    }
+
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString("en-US");
+    }
+
+    function animateNumber(element, target) {
+      const newValue = Number(target || 0);
+      const oldValue = Number(element.dataset.value || 0);
+
+      if (oldValue === newValue) {
+        element.textContent = formatNumber(newValue);
+        return;
+      }
+
+      const duration = 650;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(oldValue + (newValue - oldValue) * eased);
+
+        element.textContent = formatNumber(value);
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          element.dataset.value = newValue;
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    function renderVoiceChannels(channels) {
+      const container = $("#voiceList");
+
+      if (!Array.isArray(channels) || channels.length === 0) {
+        container.innerHTML = `
+          <div class="voice-channel">
+            <div class="channel-name">No activity</div>
+            <div class="empty">Nobody is currently in a voice channel.</div>
+            <div class="channel-count">0 Members</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = channels.map(channel => {
+        const members = Array.isArray(channel.members) ? channel.members : [];
+
+        const avatars = members.map(member => {
+          const avatar = member.avatar || "https://cdn.discordapp.com/embed/avatars/0.png";
+          const name = escapeHtml(member.name || member.username || "Unknown");
+
+          return `
+            <div class="avatar-wrap">
+              <img class="avatar" src="${escapeAttr(avatar)}" alt="${name}" loading="lazy">
+              <div class="user-tooltip">${name}</div>
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <div class="voice-channel">
+            <div class="channel-name">${escapeHtml(channel.name || "Unnamed Channel")}</div>
+            <div class="avatars">${avatars || '<span class="empty">No members</span>'}</div>
+            <div class="channel-count">${members.length} ${members.length === 1 ? "Member" : "Members"}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    async function syncDiscordData() {
+      if (
+        !CONFIG.API_URL ||
+        CONFIG.API_URL.includes("YOUR-DOMAIN")
+      ) {
+        $("#syncText").textContent = "API not configured";
+        return;
+      }
+
+      try {
+        const url = new URL(CONFIG.API_URL);
+        url.searchParams.set("server_id", CONFIG.DISCORD_SERVER_ID);
+
+        const response = await fetch(url.toString(), {
+          method: "GET",
+          cache: "no-store",
+          headers: { "Accept": "application/json" }
+        });
+
+        if (!response.ok) {
+          throw new Error(`API ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        /*
+          Expected backend response:
+
+          {
+            "total_members": 12482,
+            "online_members": 1284,
+            "voice_channels": [
+              {
+                "name": "General VC",
+                "members": [
+                  {
+                    "name": "Hridoy",
+                    "avatar": "https://cdn.discordapp.com/..."
+                  }
+                ]
+              }
+            ]
+          }
+        */
+
+        animateNumber($("#totalMembers"), data.total_members);
+        animateNumber($("#onlineMembers"), data.online_members);
+        renderVoiceChannels(data.voice_channels);
+
+        const now = new Date();
+        $("#syncText").textContent =
+          `Synced ${now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit", second:"2-digit"})}`;
+
+      } catch (error) {
+        console.error("Discord sync error:", error);
+        $("#syncText").textContent = "Sync unavailable";
+      }
+    }
+
+    window.addEventListener("scroll", () => {
+      $("#nav").classList.toggle("scrolled", window.scrollY > 30);
+    });
+
+    window.addEventListener("load", () => {
+      applyConfig();
+
+      setTimeout(() => {
+        $("#loader").classList.add("hide");
+      }, 900);
+
+      syncDiscordData();
+      setInterval(syncDiscordData, CONFIG.SYNC_INTERVAL);
+    });
+  </script>
+</body>
+</html>
