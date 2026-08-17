@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NOBOGOTO — Discord Community</title>
 
-<meta name="description"
-content="NOBOGOTO — A Discord community to connect, hang out and meet new people.">
+<meta
+    name="description"
+    content="NOBOGOTO — A place to connect, talk, play and belong."
+>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
 /* =========================================================
-   VARIABLES
+   ROOT
 ========================================================= */
 
 :root{
-    --bg:#08090c;
-    --bg2:#0d0f13;
+    --bg:#090a0c;
+    --bg-soft:#0e1013;
 
-    --card:rgba(255,255,255,.045);
-    --line:rgba(255,255,255,.09);
+    --white:#f5f4f0;
+    --muted:#858991;
+    --muted-dark:#5e636b;
 
-    --text:#f5f5f3;
-    --muted:#898d96;
+    --orange:#ff9d57;
+    --orange-light:#ffc08f;
 
-    --orange:#ff9d52;
-    --orange2:#ffbd7a;
+    --green:#6de19a;
 
-    --green:#72df9b;
+    --border:rgba(255,255,255,.085);
+    --border-orange:rgba(255,164,95,.24);
 
-    --display:"Space Grotesk",sans-serif;
+    --card:rgba(255,255,255,.035);
+
+    --display:"Manrope",sans-serif;
     --body:"DM Sans",sans-serif;
 }
 
@@ -57,7 +64,7 @@ html{
 
 body{
     background:var(--bg);
-    color:var(--text);
+    color:var(--white);
     font-family:var(--body);
     overflow-x:hidden;
 }
@@ -68,172 +75,92 @@ a{
 }
 
 button{
-    font:inherit;
+    font-family:inherit;
 }
 
 
 /* =========================================================
-   AMBIENT BACKGROUND
+   BACKGROUND
 ========================================================= */
 
-.ambient{
+.background{
     position:fixed;
     inset:0;
-
     z-index:-10;
-
     overflow:hidden;
 
     background:
         radial-gradient(
-            circle at 72% 15%,
-            rgba(255,155,76,.13),
+            circle at 78% 0%,
+            rgba(255,145,70,.13),
             transparent 27%
         ),
         radial-gradient(
-            circle at 15% 55%,
-            rgba(84,104,180,.10),
+            circle at 0% 50%,
+            rgba(94,112,190,.07),
             transparent 28%
         ),
-        #08090c;
+        #090a0c;
 }
 
-
-.orb{
+.grid{
     position:absolute;
+    inset:-100px;
 
-    border-radius:50%;
-
-    filter:blur(80px);
-
-    pointer-events:none;
-}
-
-
-.orb.one{
-    width:420px;
-    height:420px;
-
-    right:-150px;
-    top:-150px;
-
-    background:rgba(255,140,62,.13);
-
-    animation:
-        floatOne
-        12s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-.orb.two{
-    width:350px;
-    height:350px;
-
-    left:-180px;
-    top:35%;
-
-    background:rgba(82,105,190,.10);
-
-    animation:
-        floatTwo
-        15s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-.orb.three{
-    width:300px;
-    height:300px;
-
-    right:18%;
-    bottom:-170px;
-
-    background:rgba(255,175,100,.08);
-
-    animation:
-        floatThree
-        14s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-@keyframes floatOne{
-
-    to{
-        transform:
-            translate(-80px,100px)
-            scale(1.15);
-    }
-
-}
-
-
-@keyframes floatTwo{
-
-    to{
-        transform:
-            translate(100px,-70px)
-            scale(1.2);
-    }
-
-}
-
-
-@keyframes floatThree{
-
-    to{
-        transform:
-            translate(-100px,-80px)
-            scale(1.15);
-    }
-
-}
-
-
-/* =========================================================
-   MOVING STARS
-========================================================= */
-
-.stars{
-    position:absolute;
-    inset:0;
-
-    opacity:.55;
+    opacity:.18;
 
     background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.45) 1px,
+        linear-gradient(
+            rgba(255,255,255,.027) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.027) 1px,
             transparent 1px
         );
 
-    background-size:130px 130px;
+    background-size:70px 70px;
 
-    animation:
-        starsMove
-        30s
-        linear
-        infinite;
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 88%
+        );
 }
 
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(110px);
+}
 
-@keyframes starsMove{
+.glow.one{
+    width:420px;
+    height:420px;
+    top:-210px;
+    right:-100px;
 
-    from{
-        transform:translateY(0);
-    }
+    background:rgba(255,143,68,.12);
+}
 
-    to{
-        transform:translateY(130px);
-    }
+.glow.two{
+    width:350px;
+    height:350px;
+    left:-190px;
+    top:43%;
 
+    background:rgba(90,110,200,.07);
+}
+
+.glow.three{
+    width:330px;
+    height:330px;
+    right:8%;
+    bottom:-220px;
+
+    background:rgba(255,145,70,.06);
 }
 
 
@@ -245,7 +172,7 @@ button{
     position:fixed;
     inset:0;
 
-    z-index:50;
+    z-index:80;
 
     pointer-events:none;
 
@@ -264,123 +191,106 @@ button{
     position:fixed;
     inset:0;
 
-    z-index:100;
+    z-index:9999;
 
-    display:grid;
-    place-items:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    background:#07080b;
+    background:#08090b;
 
     transition:
-        .8s ease;
+        opacity .7s ease,
+        visibility .7s ease;
 }
-
 
 .loader.hide{
     opacity:0;
     visibility:hidden;
 }
 
-
-.loader-box{
+.loader-content{
     text-align:center;
 }
 
+.loader-logo{
+    width:76px;
+    height:76px;
 
-.loader-mark{
-    width:72px;
-    height:72px;
+    overflow:hidden;
 
     border-radius:21px;
 
-    display:grid;
-    place-items:center;
-
-    margin:auto;
-
-    border:1px solid var(--line);
+    border:1px solid var(--border);
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,177,104,.16),
-            rgba(255,255,255,.035)
+            rgba(255,178,115,.2),
+            rgba(255,255,255,.03)
         );
 
     box-shadow:
-        0 0 70px rgba(255,150,75,.15);
-
-    overflow:hidden;
+        0 0 80px rgba(255,150,70,.12);
 }
 
-
-.loader-mark img{
+.loader-logo img{
     width:100%;
     height:100%;
-
-    display:block;
-
     object-fit:cover;
-
-    border-radius:inherit;
 }
 
-
 .loader-title{
-    margin-top:16px;
+    margin-top:18px;
 
     font-family:var(--display);
 
     font-size:11px;
+    font-weight:800;
 
     letter-spacing:4px;
 }
 
-
 .loader-bar{
-    width:150px;
+    width:155px;
     height:2px;
 
-    margin:20px auto 0;
-
-    background:
-        rgba(255,255,255,.08);
+    margin:19px auto 0;
 
     overflow:hidden;
-}
 
+    background:rgba(255,255,255,.08);
+}
 
 .loader-bar span{
     display:block;
 
-    width:45%;
+    width:40%;
     height:100%;
 
     background:var(--orange);
 
     animation:
-        load
-        1.2s
+        loading 1.1s
         infinite
         ease-in-out;
 }
 
-
-@keyframes load{
+@keyframes loading{
 
     from{
-        transform:translateX(-100%);
+        transform:translateX(-160%);
     }
 
     to{
-        transform:translateX(330%);
+        transform:translateX(400%);
     }
 
 }
 
 
 /* =========================================================
-   GLOBAL
+   CONTAINER
 ========================================================= */
 
 .container{
@@ -392,58 +302,13 @@ button{
     margin:auto;
 }
 
-
 section{
     padding:115px 0;
 }
 
 
-.label{
-    color:var(--orange2);
-
-    font-size:9px;
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-}
-
-
-.section-title{
-    margin-top:12px;
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(
-            38px,
-            5vw,
-            66px
-        );
-
-    line-height:.96;
-
-    letter-spacing:-3px;
-}
-
-
-.section-subtitle{
-    max-width:530px;
-
-    margin-top:18px;
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    line-height:1.8;
-}
-
-
 /* =========================================================
-   NAV
+   NAVIGATION
 ========================================================= */
 
 .nav-wrap{
@@ -451,116 +316,83 @@ section{
     z-index:20;
 }
 
-
 nav{
     height:82px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
-    border-bottom:
-        1px solid var(--line);
+    border-bottom:1px solid var(--border);
 }
-
 
 .logo{
     display:flex;
-
     align-items:center;
-
     gap:11px;
 }
 
+.logo-image{
+    width:39px;
+    height:39px;
 
-.logo-box{
-    width:37px;
-    height:37px;
-
-    display:grid;
-    place-items:center;
+    overflow:hidden;
 
     border-radius:11px;
 
     background:
         linear-gradient(
-            145deg,
-            #ffb16b,
-            #d96e37
+            135deg,
+            #ffb375,
+            #dc743d
         );
-
-    color:#17100b;
-
-    font-family:var(--display);
-
-    font-size:13px;
-
-    font-weight:700;
-
-    box-shadow:
-        0 8px 30px
-        rgba(255,140,70,.12);
-
-    overflow:hidden;
 }
 
-
-.logo-box img{
+.logo-image img{
     width:100%;
     height:100%;
-
-    display:block;
-
     object-fit:cover;
 }
 
-
-.logo-text{
+.logo-name{
     font-family:var(--display);
 
     font-size:13px;
-
-    font-weight:700;
+    font-weight:800;
 
     letter-spacing:1px;
 }
 
-
 .nav-links{
     display:flex;
-
     align-items:center;
-
-    gap:30px;
+    gap:28px;
 }
 
-
 .nav-links a{
-    color:#9296a0;
+    color:#838891;
 
-    font-size:11px;
+    font-size:9px;
+    font-weight:600;
 
     transition:.25s;
 }
-
 
 .nav-links a:hover{
     color:white;
 }
 
-
-.nav-join{
-    padding:10px 16px;
+.nav-button{
+    padding:11px 17px;
 
     border-radius:9px;
 
-    background:var(--text);
+    background:var(--white);
 
-    color:#0a0b0e!important;
+    color:#08090b!important;
 
-    font-weight:700;
+    font-size:9px!important;
+    font-weight:800!important;
 }
 
 
@@ -569,26 +401,32 @@ nav{
 ========================================================= */
 
 .hero{
-    min-height:680px;
+    min-height:690px;
 
     display:grid;
 
     grid-template-columns:
-        1.1fr
-        .9fr;
+        1.08fr
+        .92fr;
 
     align-items:center;
 
     gap:70px;
-
-    padding-top:70px;
 }
 
+.eyebrow{
+    color:var(--orange-light);
+
+    font-size:9px;
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
 
 .hero h1{
-    margin-top:18px;
-
-    max-width:720px;
+    margin-top:20px;
 
     font-family:var(--display);
 
@@ -604,106 +442,91 @@ nav{
     letter-spacing:-6px;
 }
 
-
 .hero h1 span{
     display:block;
 }
 
-
-.hero h1 .outline{
+.outline{
     color:transparent;
 
     -webkit-text-stroke:
-        1px rgba(255,255,255,.45);
+        1px
+        rgba(255,255,255,.45);
 }
 
+.hero-description{
+    max-width:510px;
 
-.hero-text{
-    max-width:530px;
+    margin-top:28px;
 
-    margin-top:27px;
+    color:var(--muted);
 
-    color:#92969f;
+    font-size:13px;
 
-    font-size:14px;
-
-    line-height:1.85;
+    line-height:1.9;
 }
 
-
-.hero-actions{
+.buttons{
     display:flex;
-
     gap:10px;
 
     margin-top:30px;
 }
 
-
-.btn{
+.button{
     min-height:47px;
 
-    padding:0 20px;
-
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
+
+    padding:0 21px;
 
     border-radius:10px;
 
-    font-size:10px;
-
-    font-weight:700;
+    font-size:9px;
+    font-weight:800;
 
     transition:.3s;
 }
 
-
-.btn-main{
+.button-primary{
     background:
         linear-gradient(
             135deg,
-            #ffb06a,
-            #ed8146
+            #ffb475,
+            #eb8145
         );
 
-    color:#170e08;
+    color:#170d07;
 }
 
-
-.btn-main:hover{
+.button-primary:hover{
     transform:translateY(-3px);
 
     box-shadow:
-        0 15px 45px
-        rgba(240,125,65,.18);
+        0 18px 45px
+        rgba(236,126,66,.18);
 }
 
+.button-secondary{
+    border:1px solid var(--border);
 
-.btn-ghost{
-    border:
-        1px solid var(--line);
-
-    background:
-        rgba(255,255,255,.035);
+    background:rgba(255,255,255,.035);
 }
 
-
-.btn-ghost:hover{
-    background:
-        rgba(255,255,255,.07);
-
+.button-secondary:hover{
     transform:translateY(-3px);
+
+    background:rgba(255,255,255,.07);
 }
 
 
 /* =========================================================
-   HERO COMMUNITY VISUAL
+   HERO VISUAL
 ========================================================= */
 
-.community-visual{
+.hero-visual{
     position:relative;
 
     min-height:440px;
@@ -711,52 +534,44 @@ nav{
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 }
 
-
-.ring{
+.orbit{
     position:absolute;
 
     width:390px;
     height:390px;
 
-    border:
-        1px solid
-        rgba(255,175,100,.14);
-
     border-radius:50%;
 
+    border:1px solid rgba(255,170,105,.12);
+
     animation:
-        spin
-        22s
-        linear
-        infinite;
+        rotate 22s
+        linear infinite;
 }
 
-
-.ring::before{
+.orbit::after{
     content:"";
 
     position:absolute;
 
-    width:8px;
-    height:8px;
+    width:7px;
+    height:7px;
+
+    top:19px;
+    left:50%;
 
     border-radius:50%;
 
     background:var(--orange);
 
     box-shadow:
-        0 0 25px var(--orange);
-
-    top:25px;
-    left:50%;
+        0 0 20px var(--orange);
 }
 
-
-@keyframes spin{
+@keyframes rotate{
 
     to{
         transform:rotate(360deg);
@@ -764,398 +579,71 @@ nav{
 
 }
 
-
-.visual-card{
+.community-card{
     position:relative;
 
-    width:310px;
+    width:320px;
 
-    border:
-        1px solid var(--line);
+    padding:27px;
 
-    border-radius:25px;
+    border-radius:24px;
 
-    padding:25px;
+    border:1px solid var(--border);
 
     background:
-        rgba(12,14,19,.65);
+        rgba(14,16,20,.74);
 
     backdrop-filter:blur(25px);
 
     box-shadow:
         0 35px 100px
-        rgba(0,0,0,.4);
+        rgba(0,0,0,.42);
 }
 
-
-.visual-top{
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-}
-
-
-.visual-logo{
-    width:56px;
-    height:56px;
-
-    border-radius:17px;
-
-    display:grid;
-    place-items:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb16c,
-            #d96e39
-        );
-
-    color:#17100b;
-
-    font-family:var(--display);
-
-    font-weight:700;
+.card-logo{
+    width:75px;
+    height:75px;
 
     overflow:hidden;
+
+    border-radius:21px;
+
+    border:1px solid var(--border);
+
+    background:#17191e;
 }
 
-
-.visual-logo img{
+.card-logo img{
     width:100%;
     height:100%;
 
     object-fit:cover;
-
-    display:block;
 }
 
+.card-title{
+    margin-top:19px;
 
-.visual-name{
     font-family:var(--display);
 
-    font-size:17px;
-
-    font-weight:700;
+    font-size:24px;
+    font-weight:800;
 }
 
+.card-status{
+    display:flex;
+    align-items:center;
+    gap:7px;
 
-.visual-status{
-    margin-top:4px;
+    margin-top:8px;
 
     color:var(--green);
 
     font-size:8px;
-}
-
-
-.visual-line{
-    height:1px;
-
-    margin:22px 0;
-
-    background:var(--line);
-}
-
-
-.visual-row{
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:11px 0;
-
-    color:#777c86;
-
-    font-size:10px;
-}
-
-
-.visual-row strong{
-    color:#e8e8e7;
-}
-
-
-.visual-bottom{
-    margin-top:17px;
-
-    padding:13px;
-
-    border-radius:11px;
-
-    background:
-        rgba(255,255,255,.04);
-
-    color:#8c919a;
-
-    font-size:9px;
-
-    line-height:1.6;
-}
-
-
-/* =========================================================
-   TRUST
-========================================================= */
-
-.trust{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    border-top:
-        1px solid var(--line);
-
-    border-bottom:
-        1px solid var(--line);
-}
-
-
-.trust-item{
-    padding:30px;
-
-    border-right:
-        1px solid var(--line);
-}
-
-
-.trust-item:last-child{
-    border-right:0;
-}
-
-
-.trust-number{
-    font-family:var(--display);
-
-    font-size:25px;
-
-    font-weight:700;
-}
-
-
-.trust-title{
-    margin-top:5px;
-
-    color:#777c85;
-
-    font-size:9px;
-
-    text-transform:uppercase;
 
     letter-spacing:1px;
 }
 
-
-/* =========================================================
-   COMMUNITY
-========================================================= */
-
-.community-grid{
-    margin-top:55px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-}
-
-
-.community-card{
-    min-height:230px;
-
-    padding:25px;
-
-    border:
-        1px solid var(--line);
-
-    border-radius:18px;
-
-    background:var(--card);
-
-    transition:.35s;
-}
-
-
-.community-card:hover{
-    transform:translateY(-7px);
-
-    border-color:
-        rgba(255,165,90,.25);
-
-    background:
-        rgba(255,255,255,.065);
-}
-
-
-.card-number{
-    color:#626771;
-
-    font-size:9px;
-}
-
-
-.community-card h3{
-    margin-top:75px;
-
-    font-family:var(--display);
-
-    font-size:21px;
-}
-
-
-.community-card p{
-    margin-top:8px;
-
-    color:#777c85;
-
-    font-size:10px;
-
-    line-height:1.7;
-}
-
-
-/* =========================================================
-   SERVER
-========================================================= */
-
-.server{
-    border:
-        1px solid var(--line);
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    background:
-        rgba(255,255,255,.035);
-}
-
-
-.server-top{
-    min-height:250px;
-
-    padding:35px;
-
-    position:relative;
-
-    display:flex;
-
-    align-items:flex-end;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(255,161,82,.22),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #17110d,
-            #0d1017
-        );
-}
-
-
-.server-top::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-        repeating-linear-gradient(
-            120deg,
-            transparent 0,
-            transparent 30px,
-            rgba(255,255,255,.025) 31px
-        );
-}
-
-
-.server-title{
-    position:relative;
-
-    z-index:2;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-}
-
-
-.server-logo{
-    width:78px;
-    height:78px;
-
-    border-radius:22px;
-
-    display:grid;
-    place-items:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb36f,
-            #da703b
-        );
-
-    color:#170f08;
-
-    font-family:var(--display);
-
-    font-size:21px;
-
-    font-weight:700;
-
-    box-shadow:
-        0 20px 55px
-        rgba(0,0,0,.35);
-
-    overflow:hidden;
-}
-
-
-.server-logo img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-}
-
-
-.server-name{
-    font-family:var(--display);
-
-    font-size:31px;
-}
-
-
-.server-state{
-    margin-top:6px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    color:var(--green);
-
-    font-size:9px;
-}
-
-
-.server-state i{
+.status-dot{
     width:6px;
     height:6px;
 
@@ -1167,54 +655,44 @@ nav{
         0 0 12px var(--green);
 }
 
+.card-line{
+    height:1px;
 
-.server-content{
-    padding:
-        28px
-        35px
-        35px;
+    margin:22px 0;
+
+    background:var(--border);
 }
 
+.card-text{
+    color:#777c85;
 
-.server-description{
-    max-width:650px;
-
-    color:#838891;
-
-    font-size:11px;
+    font-size:10px;
 
     line-height:1.8;
 }
 
-
-.server-stats{
-    margin-top:25px;
-
+.card-mini{
     display:grid;
 
-    grid-template-columns:
-        repeat(3,1fr)
-        auto;
+    grid-template-columns:1fr 1fr;
 
-    gap:10px;
+    gap:8px;
+
+    margin-top:20px;
 }
 
+.mini-stat{
+    padding:14px;
 
-.stat{
-    padding:17px;
+    border-radius:11px;
 
-    border:
-        1px solid var(--line);
+    border:1px solid var(--border);
 
-    border-radius:12px;
-
-    background:
-        rgba(255,255,255,.025);
+    background:rgba(255,255,255,.025);
 }
 
-
-.stat small{
-    color:#646a74;
+.mini-stat small{
+    color:#5f646c;
 
     font-size:7px;
 
@@ -1223,98 +701,460 @@ nav{
     letter-spacing:1px;
 }
 
-
-.stat strong{
+.mini-stat strong{
     display:block;
 
-    margin-top:7px;
+    margin-top:6px;
+
+    font-family:var(--display);
+
+    font-size:18px;
+}
+
+
+/* =========================================================
+   SECTION TITLES
+========================================================= */
+
+.section-label{
+    color:var(--orange-light);
+
+    font-size:9px;
+    font-weight:700;
+
+    letter-spacing:2px;
+}
+
+.section-title{
+    margin-top:12px;
+
+    font-family:var(--display);
+
+    font-size:
+        clamp(
+            42px,
+            5vw,
+            68px
+        );
+
+    line-height:.93;
+
+    letter-spacing:-3px;
+}
+
+.section-description{
+    max-width:550px;
+
+    margin-top:19px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.9;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.feature-grid{
+    margin-top:55px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+}
+
+.feature{
+    position:relative;
+
+    min-height:245px;
+
+    padding:25px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    border-radius:19px;
+
+    background:var(--card);
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        background .35s;
+}
+
+.feature:hover{
+    transform:translateY(-7px);
+
+    border-color:var(--border-orange);
+
+    background:
+        rgba(255,255,255,.055);
+}
+
+.feature-icon{
+    width:58px;
+    height:58px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:17px;
+
+    border:1px solid rgba(255,173,105,.16);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,165,98,.12),
+            rgba(255,255,255,.025)
+        );
+
+    color:var(--orange-light);
+}
+
+.feature-icon svg{
+    width:27px;
+    height:27px;
+
+    fill:none;
+
+    stroke:currentColor;
+
+    stroke-width:1.45;
+
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.feature-number{
+    position:absolute;
+
+    top:27px;
+    right:27px;
+
+    color:#555a62;
+
+    font-size:8px;
+}
+
+.feature h3{
+    margin-top:65px;
 
     font-family:var(--display);
 
     font-size:20px;
 }
 
-
-.server-button{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    min-width:150px;
-
-    border-radius:12px;
-
-    background:var(--text);
-
-    color:#090a0c;
-
-    font-size:9px;
-
-    font-weight:700;
-}
-
-
-/* =========================================================
-   WHY
-========================================================= */
-
-.why-layout{
-    display:grid;
-
-    grid-template-columns:
-        .8fr
-        1.2fr;
-
-    gap:80px;
-}
-
-
-.why-list{
-    border-top:
-        1px solid var(--line);
-}
-
-
-.why-row{
-    padding:25px 0;
-
-    display:grid;
-
-    grid-template-columns:
-        55px
-        1fr;
-
-    gap:15px;
-
-    border-bottom:
-        1px solid var(--line);
-}
-
-
-.why-row span{
-    color:#666b75;
-
-    font-size:9px;
-}
-
-
-.why-row h3{
-    font-family:var(--display);
-
-    font-size:17px;
-}
-
-
-.why-row p{
-    margin-top:6px;
+.feature p{
+    margin-top:8px;
 
     color:#777c85;
 
     font-size:10px;
 
-    line-height:1.7;
+    line-height:1.8;
+}
+
+
+/* =========================================================
+   SERVER SHOWCASE
+========================================================= */
+
+.server{
+    margin-top:55px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,.25);
+}
+
+.server-banner{
+    position:relative;
+
+    height:270px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,170,105,.18),
+            transparent 35%
+        ),
+        #12151a;
+}
+
+.server-banner img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    opacity:.78;
+}
+
+.server-banner::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(7,8,10,.97),
+            transparent 72%
+        );
+}
+
+.server-header{
+    position:relative;
+
+    z-index:2;
+
+    margin-top:-63px;
+
+    padding:
+        0
+        32px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:17px;
+}
+
+.server-avatar{
+    width:88px;
+    height:88px;
+
+    flex-shrink:0;
+
+    overflow:hidden;
+
+    border-radius:23px;
+
+    border:4px solid #0b0c0f;
+
+    background:#17191e;
+}
+
+.server-avatar img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+.server-name{
+    font-family:var(--display);
+
+    font-size:29px;
+    font-weight:800;
+}
+
+.server-status{
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:6px;
+
+    color:var(--green);
+
+    font-size:8px;
+
+    letter-spacing:1px;
+}
+
+.server-body{
+    padding:
+        25px
+        32px
+        32px;
+}
+
+.server-description{
+    max-width:750px;
+
+    color:#858a92;
+
+    font-size:11px;
+
+    line-height:1.85;
+}
+
+.server-stats{
+    margin-top:24px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr)
+        1.15fr;
+
+    gap:9px;
+}
+
+.server-stat{
+    padding:17px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.server-stat small{
+    color:#5e636b;
+
+    font-size:7px;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.server-stat strong{
+    display:block;
+
+    margin-top:7px;
+
+    font-family:var(--display);
+
+    font-size:21px;
+}
+
+.join-server{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:65px;
+
+    border-radius:12px;
+
+    background:var(--white);
+
+    color:#08090b;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    transition:.3s;
+}
+
+.join-server:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(255,255,255,.08);
+}
+
+
+/* =========================================================
+   ABOUT COMMUNITY
+========================================================= */
+
+.about-box{
+    margin-top:50px;
+
+    display:grid;
+
+    grid-template-columns:
+        .9fr
+        1.1fr;
+
+    gap:12px;
+}
+
+.about-card{
+    padding:32px;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    background:var(--card);
+}
+
+.about-card h3{
+    font-family:var(--display);
+
+    font-size:24px;
+}
+
+.about-card p{
+    margin-top:16px;
+
+    color:#7e838c;
+
+    font-size:11px;
+
+    line-height:1.9;
+}
+
+.about-list{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+}
+
+.about-item{
+    padding:20px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.about-item strong{
+    display:block;
+
+    font-family:var(--display);
+
+    font-size:13px;
+}
+
+.about-item span{
+    display:block;
+
+    margin-top:5px;
+
+    color:#646972;
+
+    font-size:8px;
 }
 
 
@@ -1323,42 +1163,36 @@ nav{
 ========================================================= */
 
 .faq{
-    max-width:850px;
+    max-width:860px;
 
     margin-top:50px;
 }
 
-
 .faq-item{
-    border-top:
-        1px solid var(--line);
+    border-top:1px solid var(--border);
 }
-
 
 .faq-item:last-child{
-    border-bottom:
-        1px solid var(--line);
+    border-bottom:1px solid var(--border);
 }
-
 
 .faq-question{
     width:100%;
 
-    min-height:76px;
+    min-height:77px;
 
     padding:0;
 
     display:flex;
 
     align-items:center;
-
     justify-content:space-between;
 
     gap:20px;
 
-    background:none;
-
     border:0;
+
+    background:none;
 
     color:white;
 
@@ -1368,32 +1202,28 @@ nav{
 
     font-family:var(--display);
 
-    font-size:13px;
+    font-size:12px;
 }
 
-
-.plus{
-    width:28px;
-    height:28px;
+.faq-plus{
+    width:30px;
+    height:30px;
 
     flex-shrink:0;
 
     display:grid;
-
     place-items:center;
 
-    border:
-        1px solid var(--line);
+    border:1px solid var(--border);
 
     border-radius:50%;
 
-    color:#969ba4;
+    color:#858a92;
 
     transition:.3s;
 }
 
-
-.answer{
+.faq-answer{
     max-height:0;
 
     overflow:hidden;
@@ -1402,8 +1232,7 @@ nav{
         max-height .4s ease;
 }
 
-
-.answer p{
+.faq-answer p{
     padding:
         0
         50px
@@ -1414,22 +1243,17 @@ nav{
 
     font-size:10px;
 
-    line-height:1.8;
+    line-height:1.85;
 }
 
-
-.faq-item.active .answer{
-    max-height:150px;
+.faq-item.active .faq-answer{
+    max-height:180px;
 }
 
-
-.faq-item.active .plus{
+.faq-item.active .faq-plus{
     transform:rotate(45deg);
 
-    color:var(--orange2);
-
-    border-color:
-        rgba(255,170,100,.3);
+    color:var(--orange-light);
 }
 
 
@@ -1437,42 +1261,38 @@ nav{
    FINAL CTA
 ========================================================= */
 
-.final{
+.cta{
     position:relative;
 
     overflow:hidden;
 
-    padding:100px 30px;
+    padding:
+        105px
+        30px;
 
     text-align:center;
 
-    border:
-        1px solid var(--line);
+    border:1px solid var(--border);
 
-    border-radius:28px;
+    border-radius:27px;
 
     background:
         radial-gradient(
             circle at 50% 100%,
-            rgba(255,145,70,.14),
-            transparent 55%
+            rgba(255,151,77,.15),
+            transparent 58%
         ),
         rgba(255,255,255,.025);
 }
 
-
-.final h2{
-    position:relative;
-
-    z-index:2;
-
+.cta h2{
     font-family:var(--display);
 
     font-size:
         clamp(
-            45px,
+            46px,
             7vw,
-            80px
+            82px
         );
 
     line-height:.9;
@@ -1480,28 +1300,24 @@ nav{
     letter-spacing:-5px;
 }
 
+.cta h2 span{
+    color:var(--orange-light);
+}
 
-.final p{
-    position:relative;
-
-    z-index:2;
-
-    max-width:430px;
+.cta p{
+    max-width:470px;
 
     margin:20px auto 0;
 
     color:#777c85;
 
     font-size:11px;
+
+    line-height:1.85;
 }
 
-
-.final .btn{
-    position:relative;
-
-    z-index:2;
-
-    margin-top:28px;
+.cta .button{
+    margin-top:29px;
 }
 
 
@@ -1510,36 +1326,27 @@ nav{
 ========================================================= */
 
 footer{
-    padding:35px 0;
-
-    border-top:
-        1px solid var(--line);
+    padding:36px 0;
 
     display:flex;
 
     align-items:center;
-
     justify-content:space-between;
 
-    color:#5e636d;
+    border-top:1px solid var(--border);
+
+    color:#5e636b;
 
     font-size:9px;
 }
 
+.developer-link{
+    color:var(--orange-light);
 
-.developer{
-    color:#8d929b;
+    transition:.25s;
 }
 
-
-.developer a{
-    color:var(--orange2);
-
-    transition:.2s;
-}
-
-
-.developer a:hover{
+.developer-link:hover{
     color:white;
 }
 
@@ -1551,15 +1358,14 @@ footer{
 .reveal{
     opacity:0;
 
-    transform:
-        translateY(25px);
+    transform:translateY(25px);
 
     transition:
-        .8s ease;
+        opacity .75s ease,
+        transform .75s ease;
 }
 
-
-.reveal.show{
+.reveal.visible{
     opacity:1;
 
     transform:none;
@@ -1570,12 +1376,11 @@ footer{
    MOBILE
 ========================================================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
-    .nav-links{
+    .nav-links a:not(.nav-button){
         display:none;
     }
-
 
     .hero{
         grid-template-columns:1fr;
@@ -1585,54 +1390,20 @@ footer{
         padding-top:55px;
     }
 
-
-    .community-visual{
-        min-height:390px;
-    }
-
-
-    .community-grid{
+    .about-box{
         grid-template-columns:1fr;
     }
 
-
-    .trust{
-        grid-template-columns:1fr;
+    .feature-grid{
+        grid-template-columns:1fr 1fr;
     }
-
-
-    .trust-item{
-        border-right:0;
-
-        border-bottom:
-            1px solid var(--line);
-    }
-
-
-    .trust-item:last-child{
-        border-bottom:0;
-    }
-
-
-    .why-layout{
-        grid-template-columns:1fr;
-
-        gap:45px;
-    }
-
 
     .server-stats{
-        grid-template-columns:
-            1fr
-            1fr;
+        grid-template-columns:1fr 1fr;
     }
 
-
-    .server-button{
-        min-height:50px;
-
-        grid-column:
-            1 / -1;
+    .join-server{
+        grid-column:1 / -1;
     }
 
 }
@@ -1641,83 +1412,79 @@ footer{
 @media(max-width:600px){
 
     .container{
-        width:
-            calc(100% - 28px);
+        width:calc(100% - 28px);
     }
-
 
     section{
         padding:80px 0;
     }
 
-
-    .hero{
-        min-height:auto;
-    }
-
-
     .hero h1{
-        font-size:55px;
+        font-size:57px;
 
         letter-spacing:-4px;
     }
 
-
-    .hero-actions{
+    .buttons{
         flex-direction:column;
     }
 
-
-    .btn{
+    .button{
         width:100%;
     }
 
-
-    .ring{
+    .orbit{
         width:310px;
         height:310px;
     }
 
-
-    .visual-card{
-        width:280px;
+    .community-card{
+        width:285px;
     }
 
-
-    .server-top{
-        padding:25px;
+    .feature-grid{
+        grid-template-columns:1fr;
     }
 
-
-    .server-content{
-        padding:23px;
+    .server-banner{
+        height:200px;
     }
 
+    .server-header{
+        padding:0 20px;
 
-    .server-title{
-        gap:13px;
+        margin-top:-53px;
     }
 
+    .server-avatar{
+        width:73px;
+        height:73px;
 
-    .server-logo{
-        width:64px;
-        height:64px;
-
-        border-radius:18px;
+        border-radius:19px;
     }
-
 
     .server-name{
-        font-size:25px;
+        font-size:22px;
     }
 
+    .server-body{
+        padding:
+            23px
+            20px
+            25px;
+    }
 
     .server-stats{
-        grid-template-columns:
-            1fr
-            1fr;
+        grid-template-columns:1fr 1fr;
     }
 
+    .join-server{
+        grid-column:1 / -1;
+    }
+
+    .about-list{
+        grid-template-columns:1fr;
+    }
 
     footer{
         flex-direction:column;
@@ -1730,362 +1497,237 @@ footer{
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     CONFIGURATION
-===================================================== -->
+<!-- =========================================================
+     CONFIG
+========================================================= -->
 
 <script>
 
 const CONFIG = {
 
     /*
-    ========================================================
     WEBSITE LOGO
-
-    এখানে তোমার PNG / JPG / WEBP / GIF / Discord CDN link দাও।
-    GIF দিলেও কাজ করবে।
-    ========================================================
+    This is ONLY the website/loading logo.
     */
-
-    logo:
+    websiteLogo:
         "https://cdn.discordapp.com/attachments/1528377904877146273/1531919298497609770/20260718_201445.jpg?ex=6a840306&is=6a82b186&hm=e3be54f64c198375dfa7ed791e62fe8116c5f207dd5bf24184bc3acb3f32d35e&",
 
-
     /*
-    ========================================================
-    OFFICIAL DISCORD INVITE
-    ========================================================
+    NOBOGOTO DISCORD INVITE
+    Example:
+    https://discord.gg/abc123
     */
-
-    invite:
+    discordInvite:
         "https://discord.gg/vYhcdSUdnG",
 
-
     /*
-    ========================================================
-    DEVELOPER
-    ========================================================
+    DEVELOPER CREDIT
     */
-
     developerName:
         "HASAN HRIDOY",
 
     developerLink:
-        "https://hasanhridoy.site.je/",
-
-
-    /*
-    ========================================================
-    COMMUNITY DESCRIPTION
-    ========================================================
-    */
-
-    description:
-        "A place to connect, hang out, meet new people and enjoy your time.",
-
-
-    /*
-    ========================================================
-    FAQ
-    ========================================================
-    */
-
-    faq:[
-
-        {
-            q:"What is NOBOGOTO?",
-
-            a:
-            "NOBOGOTO is a Discord community created for people to connect, chat, hang out, play games and spend time together."
-        },
-
-        {
-            q:"How can I join the community?",
-
-            a:
-            "Click any Join Community button on this website. You will be taken directly to the official NOBOGOTO Discord invite."
-        },
-
-        {
-            q:"Is NOBOGOTO free to join?",
-
-            a:
-            "Yes. NOBOGOTO is free to join through the official Discord invite."
-        },
-
-        {
-            q:"What can I do in NOBOGOTO?",
-
-            a:
-            "You can chat with the community, join voice channels, meet people, play games, listen to music and participate in community activities."
-        },
-
-        {
-            q:"Do I need Discord to join?",
-
-            a:
-            "Yes. NOBOGOTO is a Discord community, so you will need a Discord account to join."
-        }
-
-    ]
+        "https://hasanhridoy.site.je/"
 
 };
 
 </script>
 
 
-<!-- =====================================================
+<!-- =========================================================
      BACKGROUND
-===================================================== -->
+========================================================= -->
 
-<div class="ambient">
+<div class="background">
 
-    <div class="stars"></div>
+    <div class="grid"></div>
 
-    <div class="orb one"></div>
-
-    <div class="orb two"></div>
-
-    <div class="orb three"></div>
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
 
 </div>
-
 
 <div class="noise"></div>
 
 
-<!-- =====================================================
-     LOADING SCREEN
-===================================================== -->
+<!-- =========================================================
+     LOADER
+========================================================= -->
 
 <div
     class="loader"
     id="loader"
 >
 
-    <div class="loader-box">
+    <div class="loader-content">
 
-
-        <div
-            class="loader-mark"
-            id="loaderLogoBox"
-        >
+        <div class="loader-logo">
 
             <img
-                id="loadingLogo"
+                id="loaderLogo"
                 src=""
                 alt="NOBOGOTO"
             >
 
         </div>
 
-
         <div class="loader-title">
-
             NOBOGOTO
-
         </div>
-
 
         <div class="loader-bar">
-
             <span></span>
-
         </div>
-
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      NAVIGATION
-===================================================== -->
+========================================================= -->
 
-<header class="nav-wrap">
-
-<div class="container">
+<header class="container nav-wrap">
 
 <nav>
-
 
     <a
         href="#"
         class="logo"
     >
 
-
-        <div class="logo-box">
+        <div class="logo-image">
 
             <img
-                id="navLogo"
+                id="websiteLogo"
                 src=""
                 alt="NOBOGOTO"
             >
 
         </div>
 
-
-        <div class="logo-text">
-
+        <div class="logo-name">
             NOBOGOTO
-
         </div>
-
 
     </a>
 
 
     <div class="nav-links">
 
-
-        <a href="#">
-            HOME
-        </a>
-
-
         <a href="#community">
             COMMUNITY
         </a>
-
 
         <a href="#server">
             SERVER
         </a>
 
+        <a href="#about">
+            ABOUT
+        </a>
 
         <a href="#faq">
             FAQ
         </a>
 
-
         <a
             id="navJoin"
             href="#"
             target="_blank"
-            rel="noopener"
-            class="nav-join"
+            class="nav-button"
         >
-
             JOIN
-
         </a>
-
 
     </div>
 
-
 </nav>
-
-</div>
 
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
 
 
-<!-- =====================================================
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
 <section class="container hero">
 
 
-<div class="reveal">
+    <div class="reveal">
+
+        <div class="eyebrow">
+            OFFICIAL DISCORD COMMUNITY
+        </div>
 
 
-    <div class="label">
+        <h1>
 
-        OFFICIAL DISCORD COMMUNITY
+            WELCOME TO
 
-    </div>
+            <span class="outline">
+                NOBOGOTO.
+            </span>
 
-
-    <h1>
-
-        A PLACE
-
-        <span class="outline">
-
-            TO CONNECT.
-
-        </span>
-
-    </h1>
+        </h1>
 
 
-    <p class="hero-text">
+        <p class="hero-description">
 
-        Meet new people, join the conversation,
-        jump into voice and find your place
-        inside NOBOGOTO.
+            A place to talk, play, connect and
+            spend time with people who make
+            the community feel like home.
 
-    </p>
-
-
-    <div class="hero-actions">
+        </p>
 
 
-        <a
-            id="heroJoin"
-            href="#"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-main"
-        >
+        <div class="buttons">
 
-            JOIN COMMUNITY →
+            <a
+                id="heroJoin"
+                href="#"
+                target="_blank"
+                class="button button-primary"
+            >
+                JOIN NOBOGOTO →
+            </a>
 
-        </a>
+            <a
+                href="#community"
+                class="button button-secondary"
+            >
+                EXPLORE COMMUNITY
+            </a>
 
-
-        <a
-            href="#server"
-            class="btn btn-ghost"
-        >
-
-            VIEW SERVER
-
-        </a>
-
+        </div>
 
     </div>
 
 
-</div>
+    <!-- HERO COMMUNITY CARD -->
+
+    <div class="hero-visual reveal">
+
+        <div class="orbit"></div>
 
 
-<!-- HERO VISUAL -->
+        <div class="community-card">
 
-<div class="community-visual reveal">
-
-
-    <div class="ring"></div>
-
-
-    <div class="visual-card">
-
-
-        <div class="visual-top">
-
-
-            <div class="visual-logo">
+            <div class="card-logo">
 
                 <img
-                    id="heroLogo"
+                    id="heroServerIcon"
                     src=""
                     alt="NOBOGOTO"
                 >
@@ -2093,184 +1735,75 @@ const CONFIG = {
             </div>
 
 
-            <div>
+            <div
+                class="card-title"
+                id="heroServerName"
+            >
+                NOBOGOTO
+            </div>
 
 
-                <div class="visual-name">
+            <div class="card-status">
 
-                    NOBOGOTO
+                <span class="status-dot"></span>
 
-                </div>
-
-
-                <div class="visual-status">
-
-                    ● Community Online
-
-                </div>
-
+                <span id="heroStatus">
+                    CONNECTING
+                </span>
 
             </div>
 
 
-        </div>
+            <div class="card-line"></div>
 
 
-        <div class="visual-line"></div>
+            <div
+                class="card-text"
+                id="heroDescription"
+            >
+                Loading community information...
+            </div>
 
 
-        <div class="visual-row">
+            <div class="card-mini">
+
+                <div class="mini-stat">
+
+                    <small>
+                        MEMBERS
+                    </small>
+
+                    <strong id="heroMembers">
+                        —
+                    </strong>
+
+                </div>
 
 
-            <span>
-                Online
-            </span>
+                <div class="mini-stat">
 
+                    <small>
+                        ONLINE
+                    </small>
 
-            <strong id="heroOnline">
-                —
-            </strong>
+                    <strong id="heroOnline">
+                        —
+                    </strong>
 
+                </div>
 
-        </div>
-
-
-        <div class="visual-row">
-
-
-            <span>
-                Members
-            </span>
-
-
-            <strong id="heroMembers">
-                —
-            </strong>
-
-
-        </div>
-
-
-        <div class="visual-row">
-
-
-            <span>
-                Status
-            </span>
-
-
-            <strong>
-                Active
-            </strong>
-
+            </div>
 
         </div>
-
-
-        <div class="visual-bottom">
-
-            A community built around
-            conversation, friendship
-            and good times.
-
-        </div>
-
 
     </div>
-
-
-</div>
 
 </section>
 
 
-<!-- =====================================================
-     TRUST
-===================================================== -->
-
-<section
-    class="container"
-    style="padding-top:0"
->
-
-
-<div class="trust reveal">
-
-
-    <div class="trust-item">
-
-
-        <div
-            class="trust-number"
-            id="trustMembers"
-        >
-
-            —
-
-        </div>
-
-
-        <div class="trust-title">
-
-            Community Members
-
-        </div>
-
-
-    </div>
-
-
-    <div class="trust-item">
-
-
-        <div
-            class="trust-number"
-            id="trustOnline"
-        >
-
-            —
-
-        </div>
-
-
-        <div class="trust-title">
-
-            Currently Online
-
-        </div>
-
-
-    </div>
-
-
-    <div class="trust-item">
-
-
-        <div class="trust-number">
-
-            24/7
-
-        </div>
-
-
-        <div class="trust-title">
-
-            Community Access
-
-        </div>
-
-
-    </div>
-
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
+<!-- =========================================================
      COMMUNITY
-===================================================== -->
+========================================================= -->
 
 <section
     id="community"
@@ -2280,11 +1813,8 @@ const CONFIG = {
 
     <div class="reveal">
 
-
-        <div class="label">
-
+        <div class="section-label">
             COMMUNITY
-
         </div>
 
 
@@ -2299,119 +1829,283 @@ const CONFIG = {
         </h2>
 
 
-        <p class="section-subtitle">
+        <p class="section-description">
 
-            Whether you want to talk, play,
-            listen to music or simply hang out —
-            NOBOGOTO gives you a place to do it.
+            Whatever your vibe is, there is
+            always a place for you inside
+            NOBOGOTO.
 
         </p>
-
 
     </div>
 
 
-    <div class="community-grid">
+    <div class="feature-grid">
 
 
-        <div class="community-card reveal">
+        <!-- ADDA -->
 
-            <div class="card-number">
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v6a3.5 3.5 0 0 1-3.5 3.5H12l-4.5 4v-4.1A3.5 3.5 0 0 1 4 11.5z"
+                    />
+
+                    <path d="M8 8h8"/>
+                    <path d="M8 11h5"/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
                 01
             </div>
 
+
             <h3>
-                Hangout
+                Adda
             </h3>
 
+
             <p>
-                Relax, talk and spend time with the community.
+                Talk, laugh and spend time
+                with people from the community.
             </p>
 
         </div>
 
 
-        <div class="community-card reveal">
+        <!-- VOICE -->
 
-            <div class="card-number">
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <rect
+                        x="9"
+                        y="3"
+                        width="6"
+                        height="11"
+                        rx="3"
+                    />
+
+                    <path d="M5 11a7 7 0 0 0 14 0"/>
+                    <path d="M12 18v3"/>
+                    <path d="M8 21h8"/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
                 02
             </div>
 
-            <h3>
-                Gaming
-            </h3>
-
-            <p>
-                Find people to play with and share the experience.
-            </p>
-
-        </div>
-
-
-        <div class="community-card reveal">
-
-            <div class="card-number">
-                03
-            </div>
 
             <h3>
                 Voice
             </h3>
 
+
             <p>
-                Jump into voice channels and meet people directly.
+                Join voice channels and
+                talk without limits.
             </p>
 
         </div>
 
 
-        <div class="community-card reveal">
+        <!-- GAMING -->
 
-            <div class="card-number">
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path
+                        d="M6.5 8h11A4.5 4.5 0 0 1 22 12.5v2.2a3 3 0 0 1-5.4 1.8L15 15H9l-1.6 1.5A3 3 0 0 1 2 14.7v-2.2A4.5 4.5 0 0 1 6.5 8z"
+                    />
+
+                    <path d="M7 11v4"/>
+                    <path d="M5 13h4"/>
+
+                    <circle
+                        cx="16.5"
+                        cy="12"
+                        r=".8"
+                    />
+
+                    <circle
+                        cx="19"
+                        cy="14"
+                        r=".8"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
+                03
+            </div>
+
+
+            <h3>
+                Gaming
+            </h3>
+
+
+            <p>
+                Find teammates, build squads
+                and play together.
+            </p>
+
+        </div>
+
+
+        <!-- MUSIC -->
+
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M9 18V5l10-2v13"/>
+
+                    <circle
+                        cx="6"
+                        cy="18"
+                        r="3"
+                    />
+
+                    <circle
+                        cx="16"
+                        cy="16"
+                        r="3"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
                 04
             </div>
+
 
             <h3>
                 Music
             </h3>
 
+
             <p>
-                Share music and enjoy the atmosphere together.
+                Share tracks and enjoy
+                music together.
             </p>
 
         </div>
 
 
-        <div class="community-card reveal">
+        <!-- FRIENDS -->
 
-            <div class="card-number">
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="9"
+                        cy="8"
+                        r="3"
+                    />
+
+                    <path
+                        d="M3 20a6 6 0 0 1 12 0"
+                    />
+
+                    <circle
+                        cx="17"
+                        cy="9"
+                        r="2.5"
+                    />
+
+                    <path
+                        d="M16 15a5 5 0 0 1 5 5"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
                 05
             </div>
+
 
             <h3>
                 Friends
             </h3>
 
+
             <p>
-                Meet new people and build real connections.
+                Meet people and make
+                new connections.
             </p>
 
         </div>
 
 
-        <div class="community-card reveal">
+        <!-- COMMUNITY -->
 
-            <div class="card-number">
+        <div class="feature reveal">
+
+            <div class="feature-icon">
+
+                <svg viewBox="0 0 24 24">
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                    />
+
+                    <path d="M3 12h18"/>
+                    <path d="M12 3c3 3 3 15 0 18"/>
+                    <path d="M12 3c-3 3-3 15 0 18"/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="feature-number">
                 06
             </div>
+
 
             <h3>
                 Community
             </h3>
 
+
             <p>
-                A space designed to feel active,
-                welcoming and alive.
+                One place for people,
+                conversations and moments.
             </p>
 
         </div>
@@ -2422,9 +2116,9 @@ const CONFIG = {
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      SERVER SHOWCASE
-===================================================== -->
+========================================================= -->
 
 <section
     id="server"
@@ -2434,32 +2128,27 @@ const CONFIG = {
 
     <div class="reveal">
 
-
-        <div class="label">
-
-            OFFICIAL SERVER
-
+        <div class="section-label">
+            LIVE DISCORD
         </div>
 
 
         <h2 class="section-title">
 
-            JOIN THE
+            MEET
 
             <br>
 
-            COMMUNITY.
+            NOBOGOTO.
 
         </h2>
 
 
-        <p class="section-subtitle">
+        <p class="section-description">
 
-            Live information from the official
-            NOBOGOTO Discord server.
+            Live server information.
 
         </p>
-
 
     </div>
 
@@ -2467,123 +2156,114 @@ const CONFIG = {
     <div class="server reveal">
 
 
-        <div class="server-top">
+        <!-- SERVER BANNER -->
 
+        <div class="server-banner">
 
-            <div class="server-title">
-
-
-                <div class="server-logo">
-
-
-                    <img
-                        id="serverLogo"
-                        src=""
-                        alt="NOBOGOTO"
-                    >
-
-
-                </div>
-
-
-                <div>
-
-
-                    <div class="server-name">
-
-                        NOBOGOTO
-
-                    </div>
-
-
-                    <div class="server-state">
-
-                        <i></i>
-
-                        ONLINE
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
+            <img
+                id="serverBanner"
+                src=""
+                alt="NOBOGOTO Banner"
+            >
 
         </div>
 
 
-        <div class="server-content">
+        <!-- SERVER HEADER -->
+
+        <div class="server-header">
+
+            <div class="server-avatar">
+
+                <img
+                    id="serverIcon"
+                    src=""
+                    alt="NOBOGOTO Server"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div
+                    class="server-name"
+                    id="serverName"
+                >
+                    Loading...
+                </div>
+
+
+                <div class="server-status">
+
+                    <span class="status-dot"></span>
+
+                    <span id="serverStatus">
+                        CONNECTING
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVER BODY -->
+
+        <div class="server-body">
 
 
             <p
-                id="serverDescription"
                 class="server-description"
+                id="serverDescription"
             >
-
                 Loading server information...
-
             </p>
 
 
             <div class="server-stats">
 
 
-                <div class="stat">
-
+                <div class="server-stat">
 
                     <small>
-                        Members
+                        Total Members
                     </small>
 
-
                     <strong
-                        id="serverMembers"
+                        id="totalMembers"
                     >
-
                         —
-
                     </strong>
-
 
                 </div>
 
 
-                <div class="stat">
-
+                <div class="server-stat">
 
                     <small>
-                        Online
+                        Online Members
                     </small>
 
-
                     <strong
-                        id="serverOnline"
+                        id="onlineMembers"
                     >
-
                         —
-
                     </strong>
-
 
                 </div>
 
 
-                <div class="stat">
-
+                <div class="server-stat">
 
                     <small>
-                        Status
+                        Auto Sync
                     </small>
-
 
                     <strong>
-
-                        ACTIVE
-
+                        10s
                     </strong>
-
 
                 </div>
 
@@ -2592,195 +2272,154 @@ const CONFIG = {
                     id="serverJoin"
                     href="#"
                     target="_blank"
-                    rel="noopener"
-                    class="server-button"
+                    class="join-server"
                 >
-
-                    JOIN DISCORD →
-
+                    JOIN SERVER →
                 </a>
 
 
             </div>
 
-
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     WHY NOBOGOTO
-===================================================== -->
+<!-- =========================================================
+     ABOUT NOBOGOTO
+========================================================= -->
 
-<section class="container">
-
-
-    <div class="why-layout">
-
-
-        <div class="reveal">
+<section
+    id="about"
+    class="container"
+>
 
 
-            <div class="label">
+    <div class="reveal">
 
-                WHY NOBOGOTO
-
-            </div>
-
-
-            <h2 class="section-title">
-
-                MORE THAN
-
-                <br>
-
-                A SERVER.
-
-            </h2>
+        <div class="section-label">
+            ABOUT NOBOGOTO
+        </div>
 
 
-            <p class="section-subtitle">
+        <h2 class="section-title">
 
-                A community should feel like
-                somewhere you actually want
-                to come back to.
+            MORE THAN
+
+            <br>
+
+            A SERVER.
+
+        </h2>
+
+
+        <p class="section-description">
+
+            A community designed around people,
+            conversations and shared experiences.
+
+        </p>
+
+    </div>
+
+
+    <div class="about-box">
+
+
+        <div class="about-card reveal">
+
+            <h3>
+                A place to belong.
+            </h3>
+
+
+            <p>
+
+                NOBOGOTO is built to be a comfortable
+                place where people can talk, play games,
+                join voice channels and meet new people.
 
             </p>
 
 
+            <p>
+
+                No matter whether you come for a quick
+                conversation or stay for years, there is
+                always a place for you here.
+
+            </p>
+
         </div>
 
 
-        <div class="why-list">
+        <div class="about-list">
 
 
-            <div class="why-row reveal">
+            <div class="about-item reveal">
 
+                <strong>
+                    Conversations
+                </strong>
 
                 <span>
-                    01
+                    Talk about anything.
                 </span>
-
-
-                <div>
-
-
-                    <h3>
-                        Easy to join
-                    </h3>
-
-
-                    <p>
-                        One click takes you directly
-                        into the official community.
-                    </p>
-
-
-                </div>
-
 
             </div>
 
 
-            <div class="why-row reveal">
+            <div class="about-item reveal">
 
+                <strong>
+                    Gaming
+                </strong>
 
                 <span>
-                    02
+                    Find your squad.
                 </span>
-
-
-                <div>
-
-
-                    <h3>
-                        People first
-                    </h3>
-
-
-                    <p>
-                        Built around conversation,
-                        connection and community.
-                    </p>
-
-
-                </div>
-
 
             </div>
 
 
-            <div class="why-row reveal">
+            <div class="about-item reveal">
 
+                <strong>
+                    Voice
+                </strong>
 
                 <span>
-                    03
+                    Stay connected.
                 </span>
-
-
-                <div>
-
-
-                    <h3>
-                        Always something to do
-                    </h3>
-
-
-                    <p>
-                        Hang out, game, talk,
-                        listen to music or simply stay around.
-                    </p>
-
-
-                </div>
-
 
             </div>
 
 
-            <div class="why-row reveal">
+            <div class="about-item reveal">
 
+                <strong>
+                    Community
+                </strong>
 
                 <span>
-                    04
+                    Meet your people.
                 </span>
-
-
-                <div>
-
-
-                    <h3>
-                        Built for everyone
-                    </h3>
-
-
-                    <p>
-                        Come as you are and find
-                        your own corner of the community.
-                    </p>
-
-
-                </div>
-
 
             </div>
 
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FAQ
-===================================================== -->
+========================================================= -->
 
 <section
     id="faq"
@@ -2790,11 +2429,8 @@ const CONFIG = {
 
     <div class="reveal">
 
-
-        <div class="label">
-
+        <div class="section-label">
             FAQ
-
         </div>
 
 
@@ -2808,41 +2444,158 @@ const CONFIG = {
 
         </h2>
 
-
     </div>
 
 
-    <div
-        id="faqContainer"
-        class="faq"
-    ></div>
+    <div class="faq">
 
+
+        <div class="faq-item reveal">
+
+            <button
+                type="button"
+                class="faq-question"
+            >
+
+                <span>
+                    What is NOBOGOTO?
+                </span>
+
+                <span class="faq-plus">
+                    +
+                </span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    NOBOGOTO is a Discord community
+                    made for conversations, gaming,
+                    voice chats, music and meeting people.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+            <button
+                type="button"
+                class="faq-question"
+            >
+
+                <span>
+                    How can I join?
+                </span>
+
+                <span class="faq-plus">
+                    +
+                </span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    Click any Join button on this website.
+                    It will open the official Discord
+                    invite for NOBOGOTO.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+            <button
+                type="button"
+                class="faq-question"
+            >
+
+                <span>
+                    Is NOBOGOTO free to join?
+                </span>
+
+                <span class="faq-plus">
+                    +
+                </span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. Joining the NOBOGOTO Discord
+                    community is free.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="faq-item reveal">
+
+            <button
+                type="button"
+                class="faq-question"
+            >
+
+                <span>
+                    How often is server information updated?
+                </span>
+
+                <span class="faq-plus">
+                    +
+                </span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    The website attempts to refresh
+                    the public Discord invite information
+                    every 10 seconds.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FINAL CTA
-===================================================== -->
+========================================================= -->
 
 <section class="container">
 
 
-    <div class="final reveal">
+    <div class="cta reveal">
 
 
         <h2>
 
-            COME
+            THERE'S ALWAYS
 
             <br>
 
-            <span
-                style="color:#ffad67"
-            >
-
-                SAY HELLO.
-
+            <span>
+                ROOM FOR YOU.
             </span>
 
         </h2>
@@ -2850,8 +2603,8 @@ const CONFIG = {
 
         <p>
 
-            The community is waiting.
-            Your next conversation could start here.
+            Come for the conversation.
+            Stay for the community.
 
         </p>
 
@@ -2860,12 +2613,9 @@ const CONFIG = {
             id="finalJoin"
             href="#"
             target="_blank"
-            rel="noopener"
-            class="btn btn-main"
+            class="button button-primary"
         >
-
             JOIN NOBOGOTO →
-
         </a>
 
 
@@ -2877,21 +2627,19 @@ const CONFIG = {
 </main>
 
 
-<!-- =====================================================
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer class="container">
 
 
     <div>
-
         © 2026 NOBOGOTO
-
     </div>
 
 
-    <div class="developer">
+    <div>
 
         Developed by
 
@@ -2899,11 +2647,9 @@ const CONFIG = {
             id="developerLink"
             href="#"
             target="_blank"
-            rel="noopener"
+            class="developer-link"
         >
-
             Hridoy
-
         </a>
 
     </div>
@@ -2912,109 +2658,44 @@ const CONFIG = {
 </footer>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-
 /* =========================================================
-   APPLY WEBSITE LOGO EVERYWHERE
+   WEBSITE LOGO
 ========================================================= */
 
-const websiteLogo =
-    CONFIG.logo;
+document.getElementById(
+    "websiteLogo"
+).src = CONFIG.websiteLogo;
 
-
-/* Navbar */
 
 document.getElementById(
-    "navLogo"
-).src =
-    websiteLogo;
-
-
-/* Loading */
-
-document.getElementById(
-    "loadingLogo"
-).src =
-    websiteLogo;
-
-
-/* Hero */
-
-document.getElementById(
-    "heroLogo"
-).src =
-    websiteLogo;
-
-
-/* Server */
-
-document.getElementById(
-    "serverLogo"
-).src =
-    websiteLogo;
+    "loaderLogo"
+).src = CONFIG.websiteLogo;
 
 
 /* =========================================================
-   FAVICON
+   DISCORD LINKS
 ========================================================= */
-
-const favicon =
-    document.createElement("link");
-
-favicon.rel =
-    "icon";
-
-favicon.href =
-    websiteLogo;
-
-document.head.appendChild(
-    favicon
-);
-
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-document.title =
-    "NOBOGOTO — Discord Community";
-
-
-/* =========================================================
-   DISCORD INVITE
-========================================================= */
-
-const invite =
-    CONFIG.invite;
-
 
 document.getElementById(
     "navJoin"
-).href =
-    invite;
+).href = CONFIG.discordInvite;
 
 
 document.getElementById(
     "heroJoin"
-).href =
-    invite;
+).href = CONFIG.discordInvite;
 
 
 document.getElementById(
     "serverJoin"
-).href =
-    invite;
+).href = CONFIG.discordInvite;
 
 
 document.getElementById(
     "finalJoin"
-).href =
-    invite;
+).href = CONFIG.discordInvite;
 
 
 /* =========================================================
@@ -3034,7 +2715,20 @@ document.getElementById(
 
 
 /* =========================================================
-   DISCORD INVITE CODE
+   FAVICON
+========================================================= */
+
+const favicon =
+    document.createElement("link");
+
+favicon.rel = "icon";
+favicon.href = CONFIG.websiteLogo;
+
+document.head.appendChild(favicon);
+
+
+/* =========================================================
+   GET DISCORD INVITE CODE
 ========================================================= */
 
 function getInviteCode(url){
@@ -3046,14 +2740,14 @@ function getInviteCode(url){
 
         const parts =
             parsed.pathname
-            .split("/")
-            .filter(Boolean);
+                .split("/")
+                .filter(Boolean);
 
         return parts[
             parts.length - 1
         ];
 
-    }catch{
+    }catch(error){
 
         return "";
 
@@ -3063,21 +2757,22 @@ function getInviteCode(url){
 
 
 /* =========================================================
-   DISCORD SERVER DATA
+   DISCORD SYNC
 ========================================================= */
 
-async function loadDiscord(){
+async function syncDiscord(){
 
     const code =
-        getInviteCode(invite);
+        getInviteCode(
+            CONFIG.discordInvite
+        );
 
 
     if(!code){
 
-        document.getElementById(
-            "serverDescription"
-        ).textContent =
-            CONFIG.description;
+        setStatus(
+            "INVALID INVITE"
+        );
 
         return;
 
@@ -3099,7 +2794,7 @@ async function loadDiscord(){
         if(!response.ok){
 
             throw new Error(
-                "Discord API error"
+                "Discord API request failed"
             );
 
         }
@@ -3113,7 +2808,31 @@ async function loadDiscord(){
             data.guild || {};
 
 
-        const members =
+        /* =================================================
+           SERVER NAME
+        ================================================= */
+
+        if(guild.name){
+
+            document.getElementById(
+                "serverName"
+            ).textContent =
+                guild.name;
+
+
+            document.getElementById(
+                "heroServerName"
+            ).textContent =
+                guild.name;
+
+        }
+
+
+        /* =================================================
+           MEMBERS
+        ================================================= */
+
+        const total =
             data.approximate_member_count;
 
 
@@ -3121,72 +2840,60 @@ async function loadDiscord(){
             data.approximate_presence_count;
 
 
+        if(
+            total !== undefined &&
+            total !== null
+        ){
+
+            const formatted =
+                Number(total)
+                    .toLocaleString();
+
+            document.getElementById(
+                "totalMembers"
+            ).textContent =
+                formatted;
+
+
+            document.getElementById(
+                "heroMembers"
+            ).textContent =
+                formatted;
+
+        }
+
+
+        if(
+            online !== undefined &&
+            online !== null
+        ){
+
+            const formatted =
+                Number(online)
+                    .toLocaleString();
+
+            document.getElementById(
+                "onlineMembers"
+            ).textContent =
+                formatted;
+
+
+            document.getElementById(
+                "heroOnline"
+            ).textContent =
+                formatted;
+
+        }
+
+
+        /* =================================================
+           DESCRIPTION
+        ================================================= */
+
         const description =
             guild.description
             ||
-            CONFIG.description;
-
-
-        const memberText =
-            members != null
-            ?
-            Number(
-                members
-            ).toLocaleString()
-            :
-            "—";
-
-
-        const onlineText =
-            online != null
-            ?
-            Number(
-                online
-            ).toLocaleString()
-            :
-            "—";
-
-
-        /* Hero */
-
-        document.getElementById(
-            "heroMembers"
-        ).textContent =
-            memberText;
-
-
-        document.getElementById(
-            "heroOnline"
-        ).textContent =
-            onlineText;
-
-
-        /* Trust */
-
-        document.getElementById(
-            "trustMembers"
-        ).textContent =
-            memberText;
-
-
-        document.getElementById(
-            "trustOnline"
-        ).textContent =
-            onlineText;
-
-
-        /* Server */
-
-        document.getElementById(
-            "serverMembers"
-        ).textContent =
-            memberText;
-
-
-        document.getElementById(
-            "serverOnline"
-        ).textContent =
-            onlineText;
+            "A place to talk, play, connect and belong.";
 
 
         document.getElementById(
@@ -3195,45 +2902,148 @@ async function loadDiscord(){
             description;
 
 
-        /* Server name */
+        document.getElementById(
+            "heroDescription"
+        ).textContent =
+            description;
 
-        if(guild.name){
 
-            document.querySelector(
-                ".server-name"
-            ).textContent =
-                guild.name;
+        /* =================================================
+           SERVER ICON
+        ================================================= */
+
+        if(
+            guild.id &&
+            guild.icon
+        ){
+
+            const extension =
+                guild.icon.startsWith("a_")
+                ?
+                "gif"
+                :
+                "png";
+
+
+            const iconURL =
+                `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${extension}?size=256`;
+
+
+            document.getElementById(
+                "serverIcon"
+            ).src =
+                iconURL;
+
+
+            document.getElementById(
+                "heroServerIcon"
+            ).src =
+                iconURL;
 
         }
 
 
+        /* =================================================
+           SERVER BANNER
+        ================================================= */
+
+        if(
+            guild.id &&
+            guild.banner
+        ){
+
+            const extension =
+                guild.banner.startsWith("a_")
+                ?
+                "gif"
+                :
+                "png";
+
+
+            const bannerURL =
+                `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}.${extension}?size=1024`;
+
+
+            document.getElementById(
+                "serverBanner"
+            ).src =
+                bannerURL;
+
+        }
+        else{
+
+            /*
+             Server has no Discord banner.
+             Use a clean visual fallback.
+            */
+
+            document.getElementById(
+                "serverBanner"
+            ).style.display =
+                "none";
+
+        }
+
+
+        /* =================================================
+           STATUS
+        ================================================= */
+
+        setStatus(
+            "ONLINE"
+        );
+
+
     }catch(error){
 
-        console.log(
-            "Discord information unavailable:",
+        console.error(
+            "NOBOGOTO Discord Sync:",
             error
         );
 
 
-        document.getElementById(
-            "serverDescription"
-        ).textContent =
-            CONFIG.description;
+        setStatus(
+            "SYNC ERROR"
+        );
 
     }
 
 }
 
 
-/* Initial load */
+/* =========================================================
+   STATUS
+========================================================= */
 
-loadDiscord();
+function setStatus(text){
+
+    document.getElementById(
+        "serverStatus"
+    ).textContent =
+        text;
 
 
-/* Auto refresh every 10 seconds */
+    document.getElementById(
+        "heroStatus"
+    ).textContent =
+        text;
+
+}
+
+
+/* =========================================================
+   FIRST SYNC
+========================================================= */
+
+syncDiscord();
+
+
+/* =========================================================
+   AUTO SYNC — 10 SECONDS
+========================================================= */
 
 setInterval(
-    loadDiscord,
+    syncDiscord,
     10000
 );
 
@@ -3242,100 +3052,44 @@ setInterval(
    FAQ
 ========================================================= */
 
-const faqContainer =
-    document.getElementById(
-        "faqContainer"
-    );
+document
+    .querySelectorAll(
+        ".faq-question"
+    )
+    .forEach(button => {
 
-
-CONFIG.faq.forEach(
-    (item,index)=>{
-
-
-        const element =
-            document.createElement(
-                "div"
-            );
-
-
-        element.className =
-            "faq-item reveal";
-
-
-        element.innerHTML = `
-
-            <button
-                class="faq-question"
-                type="button"
-            >
-
-                <span>
-
-                    ${String(
-                        index + 1
-                    ).padStart(2,"0")}
-
-                    &nbsp;&nbsp;
-
-                    ${item.q}
-
-                </span>
-
-
-                <span class="plus">
-
-                    +
-
-                </span>
-
-            </button>
-
-
-            <div class="answer">
-
-                <p>
-
-                    ${item.a}
-
-                </p>
-
-            </div>
-
-        `;
-
-
-        const question =
-            element.querySelector(
-                ".faq-question"
-            );
-
-
-        question.addEventListener(
+        button.addEventListener(
             "click",
-            ()=>{
+            () => {
+
+                const item =
+                    button.parentElement;
 
 
                 const active =
-                    element.classList.contains(
+                    item.classList.contains(
                         "active"
                     );
 
 
                 document
-                .querySelectorAll(
-                    ".faq-item"
-                )
-                .forEach(
-                    item =>
-                    item.classList.remove(
-                        "active"
+                    .querySelectorAll(
+                        ".faq-item"
                     )
-                );
+                    .forEach(
+                        element => {
+
+                            element.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
 
 
                 if(!active){
 
-                    element.classList.add(
+                    item.classList.add(
                         "active"
                     );
 
@@ -3344,13 +3098,7 @@ CONFIG.faq.forEach(
             }
         );
 
-
-        faqContainer.appendChild(
-            element
-        );
-
-    }
-);
+    });
 
 
 /* =========================================================
@@ -3370,8 +3118,8 @@ const observer =
                     ){
 
                         entry.target
-                        .classList
-                        .add("show");
+                            .classList
+                            .add("visible");
 
                     }
 
@@ -3388,37 +3136,35 @@ const observer =
 
 
 document
-.querySelectorAll(
-    ".reveal"
-)
-.forEach(
-    element =>
-    observer.observe(
-        element
+    .querySelectorAll(
+        ".reveal"
     )
-);
+    .forEach(
+        element =>
+        observer.observe(element)
+    );
 
 
 /* =========================================================
-   LOADING SCREEN
+   LOADER
 ========================================================= */
 
 window.addEventListener(
     "load",
-    ()=>{
+    () => {
 
         setTimeout(
-            ()=>{
+            () => {
 
                 document
-                .getElementById(
-                    "loader"
-                )
-                .classList
-                .add("hide");
+                    .getElementById(
+                        "loader"
+                    )
+                    .classList
+                    .add("hide");
 
             },
-            1400
+            1200
         );
 
     }
@@ -3426,112 +3172,32 @@ window.addEventListener(
 
 
 /* =========================================================
-   LOGO FALLBACK
-   যদি logo URL কাজ না করে তাহলে সুন্দর N দেখাবে
+   IMAGE ERROR HANDLING
 ========================================================= */
 
 document
-.querySelectorAll(
-    "img"
-)
-.forEach(
-    img => {
+    .querySelectorAll("img")
+    .forEach(img => {
 
         img.addEventListener(
             "error",
-            ()=>{
-
-                img.style.display =
-                    "none";
-
-                img.parentElement
-                    .classList
-                    .add("logo-fallback");
+            () => {
 
                 if(
-                    !img.parentElement
-                    .querySelector(
-                        ".fallback-letter"
-                    )
+                    img.id === "serverBanner"
                 ){
 
-                    const fallback =
-                        document.createElement(
-                            "span"
-                        );
-
-                    fallback.className =
-                        "fallback-letter";
-
-                    fallback.textContent =
-                        "N";
-
-                    img.parentElement
-                        .appendChild(
-                            fallback
-                        );
+                    img.style.display =
+                        "none";
 
                 }
 
             }
         );
 
-    }
-);
+    });
 
 </script>
-
-
-<style>
-
-/* =========================================================
-   LOGO FALLBACK
-========================================================= */
-
-.logo-fallback{
-    display:grid!important;
-    place-items:center!important;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffb16b,
-            #d96e37
-        );
-}
-
-
-.fallback-letter{
-    color:#17100b;
-
-    font-family:
-        "Space Grotesk",
-        sans-serif;
-
-    font-weight:700;
-
-    font-size:20px;
-}
-
-
-.loader-mark.logo-fallback{
-    width:72px;
-    height:72px;
-}
-
-
-.visual-logo.logo-fallback{
-    width:56px;
-    height:56px;
-}
-
-
-.server-logo.logo-fallback{
-    width:78px;
-    height:78px;
-}
-
-</style>
 
 </body>
    </html>
