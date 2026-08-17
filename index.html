@@ -8,7 +8,7 @@
 
 <meta
     name="description"
-    content="NOBOGOTO — A place to connect, talk, play and belong."
+    content="NOBOGOTO — A Discord community to connect, talk, play and belong."
 >
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,29 +22,29 @@
 <style>
 
 /* =========================================================
-   ROOT
+   VARIABLES
 ========================================================= */
 
-:root{
-    --bg:#090a0c;
-    --bg-soft:#0e1013;
+:root {
+    --bg: #fffaf5;
+    --bg-soft: #fff4e9;
+    --white: #ffffff;
 
-    --white:#f5f4f0;
-    --muted:#858991;
-    --muted-dark:#5e636b;
+    --orange: #f47c32;
+    --orange-dark: #d95e17;
+    --orange-light: #ffb477;
 
-    --orange:#ff9d57;
-    --orange-light:#ffc08f;
+    --text: #171310;
+    --muted: #77706b;
+    --muted-light: #a29a93;
 
-    --green:#6de19a;
+    --border: rgba(24, 18, 14, 0.09);
+    --border-orange: rgba(244, 124, 50, 0.25);
 
-    --border:rgba(255,255,255,.085);
-    --border-orange:rgba(255,164,95,.24);
+    --shadow: 0 20px 60px rgba(70, 39, 18, 0.08);
 
-    --card:rgba(255,255,255,.035);
-
-    --display:"Manrope",sans-serif;
-    --body:"DM Sans",sans-serif;
+    --display: "Manrope", sans-serif;
+    --body: "DM Sans", sans-serif;
 }
 
 
@@ -52,30 +52,30 @@
    RESET
 ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:var(--body);
-    overflow-x:hidden;
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    overflow-x: hidden;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-button{
-    font-family:inherit;
+button {
+    font: inherit;
 }
 
 
@@ -83,84 +83,56 @@ button{
    BACKGROUND
 ========================================================= */
 
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-10;
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 78% 0%,
-            rgba(255,145,70,.13),
-            transparent 27%
-        ),
-        radial-gradient(
-            circle at 0% 50%,
-            rgba(94,112,190,.07),
-            transparent 28%
-        ),
-        #090a0c;
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    background: var(--bg);
 }
 
-.grid{
-    position:absolute;
-    inset:-100px;
+.background-grid {
+    position: absolute;
+    inset: 0;
 
-    opacity:.18;
+    opacity: 0.35;
 
     background-image:
         linear-gradient(
-            rgba(255,255,255,.027) 1px,
+            rgba(244, 124, 50, 0.035) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(255,255,255,.027) 1px,
+            rgba(244, 124, 50, 0.035) 1px,
             transparent 1px
         );
 
-    background-size:70px 70px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 88%
-        );
+    background-size: 70px 70px;
 }
 
-.glow{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(110px);
+.background-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: rgba(244, 124, 50, 0.09);
+
+    filter: blur(120px);
 }
 
-.glow.one{
-    width:420px;
-    height:420px;
-    top:-210px;
-    right:-100px;
-
-    background:rgba(255,143,68,.12);
+.background-glow.one {
+    top: -300px;
+    right: -150px;
 }
 
-.glow.two{
-    width:350px;
-    height:350px;
-    left:-190px;
-    top:43%;
+.background-glow.two {
+    bottom: -300px;
+    left: -180px;
 
-    background:rgba(90,110,200,.07);
-}
-
-.glow.three{
-    width:330px;
-    height:330px;
-    right:8%;
-    bottom:-220px;
-
-    background:rgba(255,145,70,.06);
+    background: rgba(255, 180, 119, 0.09);
 }
 
 
@@ -168,18 +140,18 @@ button{
    NOISE
 ========================================================= */
 
-.noise{
-    position:fixed;
-    inset:0;
+.noise {
+    position: fixed;
+    inset: 0;
 
-    z-index:80;
+    z-index: 90;
 
-    pointer-events:none;
+    pointer-events: none;
 
-    opacity:.025;
+    opacity: 0.018;
 
     background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 
@@ -187,123 +159,109 @@ button{
    LOADER
 ========================================================= */
 
-.loader{
-    position:fixed;
-    inset:0;
+.loader {
+    position: fixed;
+    inset: 0;
 
-    z-index:9999;
+    z-index: 9999;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:#08090b;
+    background: #fffaf5;
 
     transition:
-        opacity .7s ease,
-        visibility .7s ease;
+        opacity 0.7s ease,
+        visibility 0.7s ease;
 }
 
-.loader.hide{
-    opacity:0;
-    visibility:hidden;
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
 }
 
-.loader-content{
-    text-align:center;
+.loader-inner {
+    text-align: center;
 }
 
-.loader-logo{
-    width:76px;
-    height:76px;
+.loader-logo {
+    width: 76px;
+    height: 76px;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    border-radius:21px;
+    border-radius: 22px;
 
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,178,115,.2),
-            rgba(255,255,255,.03)
-        );
+    background: #ffffff;
 
-    box-shadow:
-        0 0 80px rgba(255,150,70,.12);
+    box-shadow: var(--shadow);
 }
 
-.loader-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.loader-logo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
-.loader-title{
-    margin-top:18px;
+.loader-name {
+    margin-top: 18px;
 
-    font-family:var(--display);
+    font-family: var(--display);
 
-    font-size:11px;
-    font-weight:800;
+    font-size: 11px;
+    font-weight: 800;
 
-    letter-spacing:4px;
+    letter-spacing: 4px;
 }
 
-.loader-bar{
-    width:155px;
-    height:2px;
+.loader-line {
+    width: 150px;
+    height: 2px;
 
-    margin:19px auto 0;
+    margin: 18px auto 0;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    background:rgba(255,255,255,.08);
+    background: rgba(0, 0, 0, 0.08);
 }
 
-.loader-bar span{
-    display:block;
+.loader-line span {
+    display: block;
 
-    width:40%;
-    height:100%;
+    width: 40%;
+    height: 100%;
 
-    background:var(--orange);
+    background: var(--orange);
 
-    animation:
-        loading 1.1s
-        infinite
-        ease-in-out;
+    animation: loading 1s infinite ease-in-out;
 }
 
-@keyframes loading{
-
-    from{
-        transform:translateX(-160%);
+@keyframes loading {
+    from {
+        transform: translateX(-150%);
     }
 
-    to{
-        transform:translateX(400%);
+    to {
+        transform: translateX(400%);
     }
-
 }
 
 
 /* =========================================================
-   CONTAINER
+   LAYOUT
 ========================================================= */
 
-.container{
-    width:min(
-        1160px,
-        calc(100% - 36px)
-    );
-
-    margin:auto;
+.container {
+    width: min(1160px, calc(100% - 36px));
+    margin: 0 auto;
 }
 
-section{
-    padding:115px 0;
+section {
+    padding: 110px 0;
 }
 
 
@@ -311,88 +269,78 @@ section{
    NAVIGATION
 ========================================================= */
 
-.nav-wrap{
-    position:relative;
-    z-index:20;
+.nav {
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
 }
 
-nav{
-    height:82px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    border-bottom:1px solid var(--border);
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:11px;
+.brand-logo {
+    width: 40px;
+    height: 40px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
 }
 
-.logo-image{
-    width:39px;
-    height:39px;
+.brand-logo img {
+    width: 100%;
+    height: 100%;
 
-    overflow:hidden;
-
-    border-radius:11px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffb375,
-            #dc743d
-        );
+    object-fit: cover;
 }
 
-.logo-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.brand-name {
+    font-family: var(--display);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
 
-.logo-name{
-    font-family:var(--display);
-
-    font-size:13px;
-    font-weight:800;
-
-    letter-spacing:1px;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:28px;
+.nav-links a {
+    color: var(--muted);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    transition: 0.25s;
 }
 
-.nav-links a{
-    color:#838891;
-
-    font-size:9px;
-    font-weight:600;
-
-    transition:.25s;
+.nav-links a:hover {
+    color: var(--orange);
 }
 
-.nav-links a:hover{
-    color:white;
-}
+.nav-join {
+    padding: 11px 18px;
 
-.nav-button{
-    padding:11px 17px;
+    border-radius: 9px;
 
-    border-radius:9px;
+    background: var(--text);
 
-    background:var(--white);
-
-    color:#08090b!important;
-
-    font-size:9px!important;
-    font-weight:800!important;
+    color: #ffffff !important;
 }
 
 
@@ -400,761 +348,623 @@ nav{
    HERO
 ========================================================= */
 
-.hero{
-    min-height:690px;
+.hero {
+    min-height: 720px;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:
-        1.08fr
-        .92fr;
+    grid-template-columns: 1fr 0.8fr;
 
-    align-items:center;
+    align-items: center;
 
-    gap:70px;
+    gap: 50px;
 }
 
-.eyebrow{
-    color:var(--orange-light);
-
-    font-size:9px;
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
-.hero h1{
-    margin-top:20px;
+.eyebrow {
+    color: var(--orange);
 
-    font-family:var(--display);
+    font-size: 9px;
+    font-weight: 800;
 
-    font-size:
-        clamp(
-            58px,
-            8vw,
-            105px
+    letter-spacing: 2px;
+}
+
+.hero-title {
+    margin-top: 20px;
+
+    font-family: var(--display);
+
+    font-size: clamp(58px, 8vw, 105px);
+
+    line-height: 0.88;
+
+    letter-spacing: -6px;
+}
+
+.hero-title span {
+    display: block;
+}
+
+.hero-outline {
+    color: transparent;
+
+    -webkit-text-stroke: 1px rgba(23, 19, 16, 0.5);
+}
+
+.hero-description {
+    max-width: 510px;
+
+    margin-top: 28px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 30px;
+}
+
+.button {
+    min-height: 47px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 21px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    transition: 0.3s;
+}
+
+.button-primary {
+    background: var(--orange);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(244, 124, 50, 0.18);
+}
+
+.button-primary:hover {
+    background: var(--orange-dark);
+    transform: translateY(-3px);
+}
+
+.button-secondary {
+    border: 1px solid var(--border);
+
+    background: #ffffff;
+}
+
+.button-secondary:hover {
+    border-color: var(--border-orange);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   LARGE PNG / ARTWORK
+========================================================= */
+
+.hero-art {
+    position: relative;
+
+    min-height: 560px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-art::before {
+    content: "";
+
+    position: absolute;
+
+    width: 380px;
+    height: 380px;
+
+    border-radius: 50%;
+
+    background: rgba(244, 124, 50, 0.09);
+
+    filter: blur(55px);
+}
+
+.hero-art-image {
+    position: relative;
+    z-index: 2;
+
+    width: min(530px, 100%);
+
+    max-height: 570px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 35px 35px
+            rgba(80, 39, 15, 0.13)
         );
 
-    line-height:.86;
-
-    letter-spacing:-6px;
+    animation:
+        floating 5s ease-in-out infinite;
 }
 
-.hero h1 span{
-    display:block;
+@keyframes floating {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-13px);
+    }
 }
 
-.outline{
-    color:transparent;
+.art-badge {
+    position: absolute;
 
-    -webkit-text-stroke:
-        1px
-        rgba(255,255,255,.45);
+    right: 0;
+    bottom: 45px;
+
+    z-index: 3;
+
+    padding: 13px 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.84);
+
+    box-shadow: var(--shadow);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
 
-.hero-description{
-    max-width:510px;
 
-    margin-top:28px;
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
 
-    color:var(--muted);
+.section-label {
+    color: var(--orange);
 
-    font-size:13px;
+    font-size: 9px;
+    font-weight: 800;
 
-    line-height:1.9;
+    letter-spacing: 2px;
 }
 
-.buttons{
-    display:flex;
-    gap:10px;
+.section-title {
+    margin-top: 12px;
 
-    margin-top:30px;
+    font-family: var(--display);
+
+    font-size: clamp(42px, 5vw, 68px);
+
+    line-height: 0.93;
+
+    letter-spacing: -3px;
 }
 
-.button{
-    min-height:47px;
+.section-description {
+    max-width: 550px;
 
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+    margin-top: 18px;
 
-    padding:0 21px;
+    color: var(--muted);
 
-    border-radius:10px;
+    font-size: 12px;
 
-    font-size:9px;
-    font-weight:800;
-
-    transition:.3s;
+    line-height: 1.9;
 }
 
-.button-primary{
+
+/* =========================================================
+   COMMUNITY FEATURES
+========================================================= */
+
+.feature-grid {
+    margin-top: 52px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.feature {
+    min-height: 230px;
+
+    padding: 25px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.62);
+
+    box-shadow:
+        0 10px 35px rgba(70, 39, 18, 0.025);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--border-orange);
+}
+
+.feature-icon {
+    width: 57px;
+    height: 57px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 16px;
+
+    background: #fff0e3;
+
+    color: var(--orange);
+}
+
+.feature-icon svg {
+    width: 26px;
+    height: 26px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.feature-number {
+    float: right;
+
+    color: #b4aaa3;
+
+    font-size: 8px;
+}
+
+.feature h3 {
+    margin-top: 52px;
+
+    font-family: var(--display);
+
+    font-size: 20px;
+}
+
+.feature p {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   DISCORD SERVER
+========================================================= */
+
+.server-card {
+    margin-top: 52px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* SERVER BANNER */
+
+.server-banner {
+    position: relative;
+
+    height: 290px;
+
+    overflow: hidden;
+
     background:
         linear-gradient(
             135deg,
-            #ffb475,
-            #eb8145
+            #ffe2cb,
+            #fff8f2
         );
-
-    color:#170d07;
 }
 
-.button-primary:hover{
-    transform:translateY(-3px);
+.server-banner img {
+    width: 100%;
+    height: 100%;
 
-    box-shadow:
-        0 18px 45px
-        rgba(236,126,66,.18);
+    display: block;
+
+    object-fit: cover;
 }
 
-.button-secondary{
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.035);
-}
-
-.button-secondary:hover{
-    transform:translateY(-3px);
-
-    background:rgba(255,255,255,.07);
-}
-
-
-/* =========================================================
-   HERO VISUAL
-========================================================= */
-
-.hero-visual{
-    position:relative;
-
-    min-height:440px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-}
-
-.orbit{
-    position:absolute;
-
-    width:390px;
-    height:390px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(255,170,105,.12);
-
-    animation:
-        rotate 22s
-        linear infinite;
-}
-
-.orbit::after{
-    content:"";
-
-    position:absolute;
-
-    width:7px;
-    height:7px;
-
-    top:19px;
-    left:50%;
-
-    border-radius:50%;
-
-    background:var(--orange);
-
-    box-shadow:
-        0 0 20px var(--orange);
-}
-
-@keyframes rotate{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-.community-card{
-    position:relative;
-
-    width:320px;
-
-    padding:27px;
-
-    border-radius:24px;
-
-    border:1px solid var(--border);
-
-    background:
-        rgba(14,16,20,.74);
-
-    backdrop-filter:blur(25px);
-
-    box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.42);
-}
-
-.card-logo{
-    width:75px;
-    height:75px;
-
-    overflow:hidden;
-
-    border-radius:21px;
-
-    border:1px solid var(--border);
-
-    background:#17191e;
-}
-
-.card-logo img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-}
-
-.card-title{
-    margin-top:19px;
-
-    font-family:var(--display);
-
-    font-size:24px;
-    font-weight:800;
-}
-
-.card-status{
-    display:flex;
-    align-items:center;
-    gap:7px;
-
-    margin-top:8px;
-
-    color:var(--green);
-
-    font-size:8px;
-
-    letter-spacing:1px;
-}
-
-.status-dot{
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    background:var(--green);
-
-    box-shadow:
-        0 0 12px var(--green);
-}
-
-.card-line{
-    height:1px;
-
-    margin:22px 0;
-
-    background:var(--border);
-}
-
-.card-text{
-    color:#777c85;
-
-    font-size:10px;
-
-    line-height:1.8;
-}
-
-.card-mini{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-
-    margin-top:20px;
-}
-
-.mini-stat{
-    padding:14px;
-
-    border-radius:11px;
-
-    border:1px solid var(--border);
-
-    background:rgba(255,255,255,.025);
-}
-
-.mini-stat small{
-    color:#5f646c;
-
-    font-size:7px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-}
-
-.mini-stat strong{
-    display:block;
-
-    margin-top:6px;
-
-    font-family:var(--display);
-
-    font-size:18px;
-}
-
-
-/* =========================================================
-   SECTION TITLES
-========================================================= */
-
-.section-label{
-    color:var(--orange-light);
-
-    font-size:9px;
-    font-weight:700;
-
-    letter-spacing:2px;
-}
-
-.section-title{
-    margin-top:12px;
-
-    font-family:var(--display);
-
-    font-size:
-        clamp(
-            42px,
-            5vw,
-            68px
-        );
-
-    line-height:.93;
-
-    letter-spacing:-3px;
-}
-
-.section-description{
-    max-width:550px;
-
-    margin-top:19px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.9;
-}
-
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-.feature-grid{
-    margin-top:55px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:12px;
-}
-
-.feature{
-    position:relative;
-
-    min-height:245px;
-
-    padding:25px;
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    border-radius:19px;
-
-    background:var(--card);
-
-    transition:
-        transform .35s,
-        border-color .35s,
-        background .35s;
-}
-
-.feature:hover{
-    transform:translateY(-7px);
-
-    border-color:var(--border-orange);
-
-    background:
-        rgba(255,255,255,.055);
-}
-
-.feature-icon{
-    width:58px;
-    height:58px;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:17px;
-
-    border:1px solid rgba(255,173,105,.16);
+.server-banner::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
 
     background:
         linear-gradient(
-            145deg,
-            rgba(255,165,98,.12),
-            rgba(255,255,255,.025)
+            to bottom,
+            transparent 35%,
+            rgba(15, 10, 7, 0.32)
         );
-
-    color:var(--orange-light);
-}
-
-.feature-icon svg{
-    width:27px;
-    height:27px;
-
-    fill:none;
-
-    stroke:currentColor;
-
-    stroke-width:1.45;
-
-    stroke-linecap:round;
-    stroke-linejoin:round;
-}
-
-.feature-number{
-    position:absolute;
-
-    top:27px;
-    right:27px;
-
-    color:#555a62;
-
-    font-size:8px;
-}
-
-.feature h3{
-    margin-top:65px;
-
-    font-family:var(--display);
-
-    font-size:20px;
-}
-
-.feature p{
-    margin-top:8px;
-
-    color:#777c85;
-
-    font-size:10px;
-
-    line-height:1.8;
 }
 
 
-/* =========================================================
-   SERVER SHOWCASE
-========================================================= */
+/* SERVER HEADER */
 
-.server{
-    margin-top:55px;
+.server-header {
+    position: relative;
+    z-index: 2;
 
-    overflow:hidden;
+    display: flex;
+    align-items: flex-end;
 
-    border:1px solid var(--border);
+    gap: 18px;
 
-    border-radius:25px;
+    margin-top: -64px;
 
-    background:
-        rgba(255,255,255,.035);
+    padding: 0 32px;
+}
+
+.server-icon {
+    width: 90px;
+    height: 90px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    border: 4px solid #fffaf5;
+
+    background: #ffffff;
+
+    box-shadow: var(--shadow);
+}
+
+.server-icon img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.server-name {
+    font-family: var(--display);
+
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.server-live {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 6px;
+
+    color: #29965b;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #42b875;
 
     box-shadow:
-        0 30px 90px
-        rgba(0,0,0,.25);
+        0 0 10px rgba(66, 184, 117, 0.45);
 }
 
-.server-banner{
-    position:relative;
 
-    height:270px;
+/* SERVER BODY */
 
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(255,170,105,.18),
-            transparent 35%
-        ),
-        #12151a;
+.server-body {
+    padding: 25px 32px 32px;
 }
 
-.server-banner img{
-    width:100%;
-    height:100%;
+.server-description {
+    max-width: 760px;
 
-    object-fit:cover;
+    color: var(--muted);
 
-    display:block;
+    font-size: 11px;
 
-    opacity:.78;
+    line-height: 1.85;
 }
 
-.server-banner::after{
-    content:"";
+.server-stats {
+    margin-top: 23px;
 
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(7,8,10,.97),
-            transparent 72%
-        );
-}
-
-.server-header{
-    position:relative;
-
-    z-index:2;
-
-    margin-top:-63px;
-
-    padding:
-        0
-        32px;
-
-    display:flex;
-
-    align-items:flex-end;
-
-    gap:17px;
-}
-
-.server-avatar{
-    width:88px;
-    height:88px;
-
-    flex-shrink:0;
-
-    overflow:hidden;
-
-    border-radius:23px;
-
-    border:4px solid #0b0c0f;
-
-    background:#17191e;
-}
-
-.server-avatar img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-}
-
-.server-name{
-    font-family:var(--display);
-
-    font-size:29px;
-    font-weight:800;
-}
-
-.server-status{
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    margin-top:6px;
-
-    color:var(--green);
-
-    font-size:8px;
-
-    letter-spacing:1px;
-}
-
-.server-body{
-    padding:
-        25px
-        32px
-        32px;
-}
-
-.server-description{
-    max-width:750px;
-
-    color:#858a92;
-
-    font-size:11px;
-
-    line-height:1.85;
-}
-
-.server-stats{
-    margin-top:24px;
-
-    display:grid;
+    display: grid;
 
     grid-template-columns:
-        repeat(3,1fr)
+        repeat(3, 1fr)
         1.15fr;
 
-    gap:9px;
+    gap: 9px;
 }
 
-.server-stat{
-    padding:17px;
+.server-stat {
+    padding: 17px;
 
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    background:rgba(255,255,255,.025);
+    background: rgba(255, 255, 255, 0.7);
 }
 
-.server-stat small{
-    color:#5e636b;
+.server-stat small {
+    color: var(--muted-light);
 
-    font-size:7px;
+    font-size: 7px;
 
-    letter-spacing:1px;
+    letter-spacing: 1px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 }
 
-.server-stat strong{
-    display:block;
+.server-stat strong {
+    display: block;
 
-    margin-top:7px;
+    margin-top: 7px;
 
-    font-family:var(--display);
+    font-family: var(--display);
 
-    font-size:21px;
+    font-size: 21px;
 }
 
-.join-server{
-    display:flex;
+.server-join {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    align-items:center;
-    justify-content:center;
+    border-radius: 12px;
 
-    min-height:65px;
+    background: var(--orange);
 
-    border-radius:12px;
+    color: #ffffff;
 
-    background:var(--white);
+    font-size: 9px;
+    font-weight: 800;
 
-    color:#08090b;
-
-    font-size:9px;
-
-    font-weight:800;
-
-    transition:.3s;
+    transition: 0.3s;
 }
 
-.join-server:hover{
-    transform:translateY(-2px);
+.server-join:hover {
+    background: var(--orange-dark);
 
-    box-shadow:
-        0 12px 35px
-        rgba(255,255,255,.08);
+    transform: translateY(-2px);
 }
 
 
 /* =========================================================
-   ABOUT COMMUNITY
+   ABOUT
 ========================================================= */
 
-.about-box{
-    margin-top:50px;
+.about-grid {
+    margin-top: 50px;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:
-        .9fr
-        1.1fr;
+    grid-template-columns: 0.9fr 1.1fr;
 
-    gap:12px;
+    gap: 12px;
 }
 
-.about-card{
-    padding:32px;
+.about-card {
+    padding: 32px;
 
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    background:var(--card);
+    background: rgba(255, 255, 255, 0.65);
 }
 
-.about-card h3{
-    font-family:var(--display);
+.about-card h3 {
+    font-family: var(--display);
 
-    font-size:24px;
+    font-size: 24px;
 }
 
-.about-card p{
-    margin-top:16px;
+.about-card p {
+    margin-top: 15px;
 
-    color:#7e838c;
+    color: var(--muted);
 
-    font-size:11px;
+    font-size: 11px;
 
-    line-height:1.9;
+    line-height: 1.9;
 }
 
-.about-list{
-    display:grid;
+.about-items {
+    display: grid;
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
-    gap:9px;
+    gap: 10px;
 }
 
-.about-item{
-    padding:20px;
+.about-item {
+    padding: 20px;
 
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
 
-    border-radius:14px;
+    border-radius: 15px;
 
-    background:rgba(255,255,255,.025);
+    background: rgba(255, 255, 255, 0.6);
 }
 
-.about-item strong{
-    display:block;
+.about-item strong {
+    font-family: var(--display);
 
-    font-family:var(--display);
-
-    font-size:13px;
+    font-size: 13px;
 }
 
-.about-item span{
-    display:block;
+.about-item span {
+    display: block;
 
-    margin-top:5px;
+    margin-top: 6px;
 
-    color:#646972;
+    color: var(--muted-light);
 
-    font-size:8px;
+    font-size: 8px;
 }
 
 
@@ -1162,162 +972,143 @@ nav{
    FAQ
 ========================================================= */
 
-.faq{
-    max-width:860px;
+.faq {
+    max-width: 850px;
 
-    margin-top:50px;
+    margin-top: 48px;
 }
 
-.faq-item{
-    border-top:1px solid var(--border);
+.faq-item {
+    border-top: 1px solid var(--border);
 }
 
-.faq-item:last-child{
-    border-bottom:1px solid var(--border);
+.faq-item:last-child {
+    border-bottom: 1px solid var(--border);
 }
 
-.faq-question{
-    width:100%;
+.faq-question {
+    width: 100%;
 
-    min-height:77px;
+    min-height: 75px;
 
-    padding:0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    display:flex;
+    gap: 20px;
 
-    align-items:center;
-    justify-content:space-between;
+    border: 0;
 
-    gap:20px;
+    background: transparent;
 
-    border:0;
+    color: var(--text);
 
-    background:none;
+    text-align: left;
 
-    color:white;
+    cursor: pointer;
 
-    text-align:left;
+    font-family: var(--display);
 
-    cursor:pointer;
-
-    font-family:var(--display);
-
-    font-size:12px;
+    font-size: 12px;
 }
 
-.faq-plus{
-    width:30px;
-    height:30px;
+.faq-plus {
+    width: 30px;
+    height: 30px;
 
-    flex-shrink:0;
+    flex-shrink: 0;
 
-    display:grid;
-    place-items:center;
+    display: grid;
+    place-items: center;
 
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    color:#858a92;
+    color: var(--orange);
 
-    transition:.3s;
+    transition: 0.3s;
 }
 
-.faq-answer{
-    max-height:0;
+.faq-answer {
+    max-height: 0;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    transition:
-        max-height .4s ease;
+    transition: max-height 0.35s ease;
 }
 
-.faq-answer p{
-    padding:
-        0
-        50px
-        25px
-        0;
+.faq-answer p {
+    padding: 0 50px 24px 0;
 
-    color:#777c85;
+    color: var(--muted);
 
-    font-size:10px;
+    font-size: 10px;
 
-    line-height:1.85;
+    line-height: 1.85;
 }
 
-.faq-item.active .faq-answer{
-    max-height:180px;
+.faq-item.active .faq-answer {
+    max-height: 180px;
 }
 
-.faq-item.active .faq-plus{
-    transform:rotate(45deg);
-
-    color:var(--orange-light);
+.faq-item.active .faq-plus {
+    transform: rotate(45deg);
 }
 
 
 /* =========================================================
-   FINAL CTA
+   CTA
 ========================================================= */
 
-.cta{
-    position:relative;
+.cta {
+    padding: 100px 30px;
 
-    overflow:hidden;
+    text-align: center;
 
-    padding:
-        105px
-        30px;
+    border: 1px solid var(--border);
 
-    text-align:center;
-
-    border:1px solid var(--border);
-
-    border-radius:27px;
+    border-radius: 25px;
 
     background:
         radial-gradient(
             circle at 50% 100%,
-            rgba(255,151,77,.15),
-            transparent 58%
+            rgba(244, 124, 50, 0.13),
+            transparent 55%
         ),
-        rgba(255,255,255,.025);
+        rgba(255, 255, 255, 0.65);
+
+    box-shadow: var(--shadow);
 }
 
-.cta h2{
-    font-family:var(--display);
+.cta h2 {
+    font-family: var(--display);
 
-    font-size:
-        clamp(
-            46px,
-            7vw,
-            82px
-        );
+    font-size: clamp(45px, 7vw, 80px);
 
-    line-height:.9;
+    line-height: 0.9;
 
-    letter-spacing:-5px;
+    letter-spacing: -5px;
 }
 
-.cta h2 span{
-    color:var(--orange-light);
+.cta h2 span {
+    color: var(--orange);
 }
 
-.cta p{
-    max-width:470px;
+.cta p {
+    max-width: 470px;
 
-    margin:20px auto 0;
+    margin: 20px auto 0;
 
-    color:#777c85;
+    color: var(--muted);
 
-    font-size:11px;
+    font-size: 11px;
 
-    line-height:1.85;
+    line-height: 1.8;
 }
 
-.cta .button{
-    margin-top:29px;
+.cta .button {
+    margin-top: 28px;
 }
 
 
@@ -1325,173 +1116,196 @@ nav{
    FOOTER
 ========================================================= */
 
-footer{
-    padding:36px 0;
+.footer {
+    padding: 35px 0;
 
-    display:flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    align-items:center;
-    justify-content:space-between;
+    border-top: 1px solid var(--border);
 
-    border-top:1px solid var(--border);
+    color: var(--muted-light);
 
-    color:#5e636b;
-
-    font-size:9px;
+    font-size: 9px;
 }
 
-.developer-link{
-    color:var(--orange-light);
+.developer-link {
+    color: var(--orange);
 
-    transition:.25s;
+    font-weight: 700;
 }
 
-.developer-link:hover{
-    color:white;
+.developer-link:hover {
+    color: var(--orange-dark);
 }
 
 
 /* =========================================================
-   REVEAL
+   SCROLL REVEAL
 ========================================================= */
 
-.reveal{
-    opacity:0;
+.reveal {
+    opacity: 0;
 
-    transform:translateY(25px);
+    transform: translateY(24px);
 
     transition:
-        opacity .75s ease,
-        transform .75s ease;
+        opacity 0.7s ease,
+        transform 0.7s ease;
 }
 
-.reveal.visible{
-    opacity:1;
+.reveal.visible {
+    opacity: 1;
 
-    transform:none;
+    transform: translateY(0);
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE
 ========================================================= */
 
-@media(max-width:900px){
+@media (max-width: 900px) {
 
-    .nav-links a:not(.nav-button){
-        display:none;
+    .hero {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        padding-top: 70px;
     }
 
-    .hero{
-        grid-template-columns:1fr;
-
-        gap:60px;
-
-        padding-top:55px;
+    .hero-art {
+        min-height: 470px;
     }
 
-    .about-box{
-        grid-template-columns:1fr;
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .feature-grid{
-        grid-template-columns:1fr 1fr;
+    .about-grid {
+        grid-template-columns: 1fr;
     }
 
-    .server-stats{
-        grid-template-columns:1fr 1fr;
+    .server-stats {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .join-server{
-        grid-column:1 / -1;
+    .server-join {
+        min-height: 60px;
+
+        grid-column: 1 / -1;
     }
 
 }
 
 
-@media(max-width:600px){
+@media (max-width: 600px) {
 
-    .container{
-        width:calc(100% - 28px);
+    .container {
+        width: calc(100% - 28px);
     }
 
-    section{
-        padding:80px 0;
+    section {
+        padding: 80px 0;
     }
 
-    .hero h1{
-        font-size:57px;
-
-        letter-spacing:-4px;
+    .nav-links a:not(.nav-join) {
+        display: none;
     }
 
-    .buttons{
-        flex-direction:column;
+    .hero-title {
+        font-size: 58px;
+
+        letter-spacing: -4px;
     }
 
-    .button{
-        width:100%;
+    .hero-buttons {
+        flex-direction: column;
     }
 
-    .orbit{
-        width:310px;
-        height:310px;
+    .button {
+        width: 100%;
     }
 
-    .community-card{
-        width:285px;
+    .hero-art {
+        min-height: 390px;
     }
 
-    .feature-grid{
-        grid-template-columns:1fr;
+    .hero-art-image {
+        width: 100%;
     }
 
-    .server-banner{
-        height:200px;
+    .art-badge {
+        right: 5px;
+        bottom: 20px;
     }
 
-    .server-header{
-        padding:0 20px;
-
-        margin-top:-53px;
+    .feature-grid {
+        grid-template-columns: 1fr;
     }
 
-    .server-avatar{
-        width:73px;
-        height:73px;
-
-        border-radius:19px;
+    .server-banner {
+        height: 205px;
     }
 
-    .server-name{
-        font-size:22px;
+    .server-header {
+        padding: 0 20px;
+
+        margin-top: -52px;
     }
 
-    .server-body{
-        padding:
-            23px
-            20px
-            25px;
+    .server-icon {
+        width: 74px;
+        height: 74px;
+
+        border-radius: 20px;
     }
 
-    .server-stats{
-        grid-template-columns:1fr 1fr;
+    .server-name {
+        font-size: 21px;
     }
 
-    .join-server{
-        grid-column:1 / -1;
+    .server-body {
+        padding: 23px 20px 25px;
     }
 
-    .about-list{
-        grid-template-columns:1fr;
+    .server-stats {
+        grid-template-columns: 1fr 1fr;
     }
 
-    footer{
-        flex-direction:column;
+    .server-join {
+        grid-column: 1 / -1;
+    }
 
-        gap:12px;
+    .about-items {
+        grid-template-columns: 1fr;
+    }
 
-        text-align:center;
+    .footer {
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
     }
 
 }
@@ -1504,7 +1318,7 @@ footer{
 
 
 <!-- =========================================================
-     CONFIG
+     CONFIGURATION
 ========================================================= -->
 
 <script>
@@ -1512,23 +1326,42 @@ footer{
 const CONFIG = {
 
     /*
-    WEBSITE LOGO
-    This is ONLY the website/loading logo.
-    */
+     * WEBSITE LOGO
+     * PNG / JPG / GIF / WebP
+     */
     websiteLogo:
         "https://cdn.discordapp.com/attachments/1528377904877146273/1531919298497609770/20260718_201445.jpg?ex=6a840306&is=6a82b186&hm=e3be54f64c198375dfa7ed791e62fe8116c5f207dd5bf24184bc3acb3f32d35e&",
 
     /*
-    NOBOGOTO DISCORD INVITE
-    Example:
-    https://discord.gg/abc123
-    */
+     * LARGE PNG AT THE TOP
+     *
+     * Best result:
+     * transparent PNG
+     * around 1000x1000 or larger
+     */
+    heroPng:
+        "https://cdn.discordapp.com/attachments/1528377904877146273/1538839181860667443/20260817_151653.png?ex=6a84232b&is=6a82d1ab&hm=d9546f28afecd72300ffa5ddbb3d48b937a87517ad6855241bed0351fc6163c4&",
+
+    /*
+     * NOBOGOTO PERMANENT INVITE
+     */
     discordInvite:
         "https://discord.gg/vYhcdSUdnG",
 
     /*
-    DEVELOPER CREDIT
-    */
+     * FALLBACK BANNER
+     *
+     * If Discord does not return a banner,
+     * this image will be displayed.
+     *
+     * Put your own banner URL here.
+     */
+    fallbackBanner:
+        "https://cdn.discordapp.com/attachments/1528377904877146273/1531919298497609770/20260718_201445.jpg?ex=6a840306&is=6a82b186&hm=e3be54f64c198375dfa7ed791e62fe8116c5f207dd5bf24184bc3acb3f32d35e&",
+
+    /*
+     * DEVELOPER
+     */
     developerName:
         "HASAN HRIDOY",
 
@@ -1546,11 +1379,11 @@ const CONFIG = {
 
 <div class="background">
 
-    <div class="grid"></div>
+    <div class="background-grid"></div>
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-    <div class="glow three"></div>
+    <div class="background-glow one"></div>
+
+    <div class="background-glow two"></div>
 
 </div>
 
@@ -1561,12 +1394,9 @@ const CONFIG = {
      LOADER
 ========================================================= -->
 
-<div
-    class="loader"
-    id="loader"
->
+<div class="loader" id="loader">
 
-    <div class="loader-content">
+    <div class="loader-inner">
 
         <div class="loader-logo">
 
@@ -1578,11 +1408,11 @@ const CONFIG = {
 
         </div>
 
-        <div class="loader-title">
+        <div class="loader-name">
             NOBOGOTO
         </div>
 
-        <div class="loader-bar">
+        <div class="loader-line">
             <span></span>
         </div>
 
@@ -1595,62 +1425,59 @@ const CONFIG = {
      NAVIGATION
 ========================================================= -->
 
-<header class="container nav-wrap">
+<header class="container">
 
-<nav>
+    <nav class="nav">
 
-    <a
-        href="#"
-        class="logo"
-    >
+        <a href="#" class="brand">
 
-        <div class="logo-image">
+            <div class="brand-logo">
 
-            <img
-                id="websiteLogo"
-                src=""
-                alt="NOBOGOTO"
+                <img
+                    id="websiteLogo"
+                    src=""
+                    alt="NOBOGOTO"
+                >
+
+            </div>
+
+            <div class="brand-name">
+                NOBOGOTO
+            </div>
+
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="#community">
+                COMMUNITY
+            </a>
+
+            <a href="#server">
+                SERVER
+            </a>
+
+            <a href="#about">
+                ABOUT
+            </a>
+
+            <a href="#faq">
+                FAQ
+            </a>
+
+            <a
+                id="navJoin"
+                href="#"
+                target="_blank"
+                class="nav-join"
             >
+                JOIN
+            </a>
 
         </div>
 
-        <div class="logo-name">
-            NOBOGOTO
-        </div>
-
-    </a>
-
-
-    <div class="nav-links">
-
-        <a href="#community">
-            COMMUNITY
-        </a>
-
-        <a href="#server">
-            SERVER
-        </a>
-
-        <a href="#about">
-            ABOUT
-        </a>
-
-        <a href="#faq">
-            FAQ
-        </a>
-
-        <a
-            id="navJoin"
-            href="#"
-            target="_blank"
-            class="nav-button"
-        >
-            JOIN
-        </a>
-
-    </div>
-
-</nav>
+    </nav>
 
 </header>
 
@@ -1665,18 +1492,18 @@ const CONFIG = {
 <section class="container hero">
 
 
-    <div class="reveal">
+    <div class="hero-content reveal">
 
         <div class="eyebrow">
             OFFICIAL DISCORD COMMUNITY
         </div>
 
 
-        <h1>
+        <h1 class="hero-title">
 
             WELCOME TO
 
-            <span class="outline">
+            <span class="hero-outline">
                 NOBOGOTO.
             </span>
 
@@ -1685,14 +1512,14 @@ const CONFIG = {
 
         <p class="hero-description">
 
-            A place to talk, play, connect and
-            spend time with people who make
-            the community feel like home.
+            A community built for conversations,
+            voice chats, gaming, music and
+            meeting new people.
 
         </p>
 
 
-        <div class="buttons">
+        <div class="hero-buttons">
 
             <a
                 id="heroJoin"
@@ -1702,6 +1529,7 @@ const CONFIG = {
             >
                 JOIN NOBOGOTO →
             </a>
+
 
             <a
                 href="#community"
@@ -1715,85 +1543,20 @@ const CONFIG = {
     </div>
 
 
-    <!-- HERO COMMUNITY CARD -->
+    <!-- LARGE PNG -->
 
-    <div class="hero-visual reveal">
+    <div class="hero-art reveal">
 
-        <div class="orbit"></div>
-
-
-        <div class="community-card">
-
-            <div class="card-logo">
-
-                <img
-                    id="heroServerIcon"
-                    src=""
-                    alt="NOBOGOTO"
-                >
-
-            </div>
+        <img
+            id="heroPng"
+            class="hero-art-image"
+            src=""
+            alt="NOBOGOTO Artwork"
+        >
 
 
-            <div
-                class="card-title"
-                id="heroServerName"
-            >
-                NOBOGOTO
-            </div>
-
-
-            <div class="card-status">
-
-                <span class="status-dot"></span>
-
-                <span id="heroStatus">
-                    CONNECTING
-                </span>
-
-            </div>
-
-
-            <div class="card-line"></div>
-
-
-            <div
-                class="card-text"
-                id="heroDescription"
-            >
-                Loading community information...
-            </div>
-
-
-            <div class="card-mini">
-
-                <div class="mini-stat">
-
-                    <small>
-                        MEMBERS
-                    </small>
-
-                    <strong id="heroMembers">
-                        —
-                    </strong>
-
-                </div>
-
-
-                <div class="mini-stat">
-
-                    <small>
-                        ONLINE
-                    </small>
-
-                    <strong id="heroOnline">
-                        —
-                    </strong>
-
-                </div>
-
-            </div>
-
+        <div class="art-badge">
+            NOBOGOTO COMMUNITY
         </div>
 
     </div>
@@ -1831,9 +1594,9 @@ const CONFIG = {
 
         <p class="section-description">
 
-            Whatever your vibe is, there is
-            always a place for you inside
-            NOBOGOTO.
+            Whatever your vibe is,
+            there is always a place for you
+            inside NOBOGOTO.
 
         </p>
 
@@ -1862,16 +1625,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 01
-            </div>
-
+            </span>
 
             <h3>
                 Adda
             </h3>
-
 
             <p>
                 Talk, laugh and spend time
@@ -1905,16 +1665,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 02
-            </div>
-
+            </span>
 
             <h3>
                 Voice
             </h3>
-
 
             <p>
                 Join voice channels and
@@ -1955,16 +1712,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 03
-            </div>
-
+            </span>
 
             <h3>
                 Gaming
             </h3>
-
 
             <p>
                 Find teammates, build squads
@@ -2000,16 +1754,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 04
-            </div>
-
+            </span>
 
             <h3>
                 Music
             </h3>
-
 
             <p>
                 Share tracks and enjoy
@@ -2051,16 +1802,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 05
-            </div>
-
+            </span>
 
             <h3>
                 Friends
             </h3>
-
 
             <p>
                 Meet people and make
@@ -2092,16 +1840,13 @@ const CONFIG = {
 
             </div>
 
-
-            <div class="feature-number">
+            <span class="feature-number">
                 06
-            </div>
-
+            </span>
 
             <h3>
                 Community
             </h3>
-
 
             <p>
                 One place for people,
@@ -2117,7 +1862,7 @@ const CONFIG = {
 
 
 <!-- =========================================================
-     SERVER SHOWCASE
+     DISCORD SERVER
 ========================================================= -->
 
 <section
@@ -2146,17 +1891,16 @@ const CONFIG = {
 
         <p class="section-description">
 
-            Live server information.
+            Live public information from
+            the official Discord invite.
 
         </p>
 
     </div>
 
 
-    <div class="server reveal">
+    <div class="server-card reveal">
 
-
-        <!-- SERVER BANNER -->
 
         <div class="server-banner">
 
@@ -2169,11 +1913,9 @@ const CONFIG = {
         </div>
 
 
-        <!-- SERVER HEADER -->
-
         <div class="server-header">
 
-            <div class="server-avatar">
+            <div class="server-icon">
 
                 <img
                     id="serverIcon"
@@ -2187,16 +1929,16 @@ const CONFIG = {
             <div>
 
                 <div
-                    class="server-name"
                     id="serverName"
+                    class="server-name"
                 >
-                    Loading...
+                    NOBOGOTO
                 </div>
 
 
-                <div class="server-status">
+                <div class="server-live">
 
-                    <span class="status-dot"></span>
+                    <span class="live-dot"></span>
 
                     <span id="serverStatus">
                         CONNECTING
@@ -2209,14 +1951,12 @@ const CONFIG = {
         </div>
 
 
-        <!-- SERVER BODY -->
-
         <div class="server-body">
 
 
             <p
-                class="server-description"
                 id="serverDescription"
+                class="server-description"
             >
                 Loading server information...
             </p>
@@ -2231,9 +1971,7 @@ const CONFIG = {
                         Total Members
                     </small>
 
-                    <strong
-                        id="totalMembers"
-                    >
+                    <strong id="totalMembers">
                         —
                     </strong>
 
@@ -2246,9 +1984,7 @@ const CONFIG = {
                         Online Members
                     </small>
 
-                    <strong
-                        id="onlineMembers"
-                    >
+                    <strong id="onlineMembers">
                         —
                     </strong>
 
@@ -2272,7 +2008,7 @@ const CONFIG = {
                     id="serverJoin"
                     href="#"
                     target="_blank"
-                    class="join-server"
+                    class="server-join"
                 >
                     JOIN SERVER →
                 </a>
@@ -2288,7 +2024,7 @@ const CONFIG = {
 
 
 <!-- =========================================================
-     ABOUT NOBOGOTO
+     ABOUT
 ========================================================= -->
 
 <section
@@ -2317,15 +2053,15 @@ const CONFIG = {
 
         <p class="section-description">
 
-            A community designed around people,
-            conversations and shared experiences.
+            Built around people,
+            conversations and community.
 
         </p>
 
     </div>
 
 
-    <div class="about-box">
+    <div class="about-grid">
 
 
         <div class="about-card reveal">
@@ -2337,25 +2073,25 @@ const CONFIG = {
 
             <p>
 
-                NOBOGOTO is built to be a comfortable
-                place where people can talk, play games,
-                join voice channels and meet new people.
+                NOBOGOTO is a community where
+                people can talk, play games,
+                join voice channels and meet
+                new people.
 
             </p>
 
 
             <p>
 
-                No matter whether you come for a quick
-                conversation or stay for years, there is
-                always a place for you here.
+                Come for a conversation.
+                Stay for the community.
 
             </p>
 
         </div>
 
 
-        <div class="about-list">
+        <div class="about-items">
 
 
             <div class="about-item reveal">
@@ -2453,8 +2189,8 @@ const CONFIG = {
         <div class="faq-item reveal">
 
             <button
-                type="button"
                 class="faq-question"
+                type="button"
             >
 
                 <span>
@@ -2472,8 +2208,8 @@ const CONFIG = {
 
                 <p>
                     NOBOGOTO is a Discord community
-                    made for conversations, gaming,
-                    voice chats, music and meeting people.
+                    for conversations, gaming,
+                    voice chats and meeting people.
                 </p>
 
             </div>
@@ -2484,8 +2220,8 @@ const CONFIG = {
         <div class="faq-item reveal">
 
             <button
-                type="button"
                 class="faq-question"
+                type="button"
             >
 
                 <span>
@@ -2502,9 +2238,9 @@ const CONFIG = {
             <div class="faq-answer">
 
                 <p>
-                    Click any Join button on this website.
-                    It will open the official Discord
-                    invite for NOBOGOTO.
+                    Click any Join button on the website
+                    to open the official NOBOGOTO
+                    Discord invite.
                 </p>
 
             </div>
@@ -2515,12 +2251,12 @@ const CONFIG = {
         <div class="faq-item reveal">
 
             <button
-                type="button"
                 class="faq-question"
+                type="button"
             >
 
                 <span>
-                    Is NOBOGOTO free to join?
+                    Is it free to join?
                 </span>
 
                 <span class="faq-plus">
@@ -2533,8 +2269,7 @@ const CONFIG = {
             <div class="faq-answer">
 
                 <p>
-                    Yes. Joining the NOBOGOTO Discord
-                    community is free.
+                    Yes. NOBOGOTO is free to join.
                 </p>
 
             </div>
@@ -2545,12 +2280,12 @@ const CONFIG = {
         <div class="faq-item reveal">
 
             <button
-                type="button"
                 class="faq-question"
+                type="button"
             >
 
                 <span>
-                    How often is server information updated?
+                    How often does the server data update?
                 </span>
 
                 <span class="faq-plus">
@@ -2563,9 +2298,9 @@ const CONFIG = {
             <div class="faq-answer">
 
                 <p>
-                    The website attempts to refresh
-                    the public Discord invite information
-                    every 10 seconds.
+                    The website refreshes the public
+                    Discord invite information every
+                    10 seconds.
                 </p>
 
             </div>
@@ -2584,9 +2319,7 @@ const CONFIG = {
 
 <section class="container">
 
-
     <div class="cta reveal">
-
 
         <h2>
 
@@ -2602,10 +2335,8 @@ const CONFIG = {
 
 
         <p>
-
             Come for the conversation.
             Stay for the community.
-
         </p>
 
 
@@ -2617,7 +2348,6 @@ const CONFIG = {
         >
             JOIN NOBOGOTO →
         </a>
-
 
     </div>
 
@@ -2631,8 +2361,7 @@ const CONFIG = {
      FOOTER
 ========================================================= -->
 
-<footer class="container">
-
+<footer class="container footer">
 
     <div>
         © 2026 NOBOGOTO
@@ -2654,64 +2383,59 @@ const CONFIG = {
 
     </div>
 
-
 </footer>
 
 
 <script>
 
 /* =========================================================
-   WEBSITE LOGO
+   LOGO
 ========================================================= */
 
-document.getElementById(
-    "websiteLogo"
-).src = CONFIG.websiteLogo;
+document.getElementById("websiteLogo").src =
+    CONFIG.websiteLogo;
+
+document.getElementById("loaderLogo").src =
+    CONFIG.websiteLogo;
 
 
-document.getElementById(
-    "loaderLogo"
-).src = CONFIG.websiteLogo;
+/* =========================================================
+   HERO PNG
+========================================================= */
+
+document.getElementById("heroPng").src =
+    CONFIG.heroPng;
 
 
 /* =========================================================
    DISCORD LINKS
 ========================================================= */
 
-document.getElementById(
-    "navJoin"
-).href = CONFIG.discordInvite;
+document.getElementById("navJoin").href =
+    CONFIG.discordInvite;
 
+document.getElementById("heroJoin").href =
+    CONFIG.discordInvite;
 
-document.getElementById(
-    "heroJoin"
-).href = CONFIG.discordInvite;
+document.getElementById("serverJoin").href =
+    CONFIG.discordInvite;
 
-
-document.getElementById(
-    "serverJoin"
-).href = CONFIG.discordInvite;
-
-
-document.getElementById(
-    "finalJoin"
-).href = CONFIG.discordInvite;
+document.getElementById("finalJoin").href =
+    CONFIG.discordInvite;
 
 
 /* =========================================================
    DEVELOPER
 ========================================================= */
 
-document.getElementById(
-    "developerLink"
-).href =
-    CONFIG.developerLink;
+const developer =
+    document.getElementById("developerLink");
 
-
-document.getElementById(
-    "developerLink"
-).textContent =
+developer.textContent =
     CONFIG.developerName;
+
+developer.href =
+    CONFIG.developerLink;
 
 
 /* =========================================================
@@ -2728,12 +2452,12 @@ document.head.appendChild(favicon);
 
 
 /* =========================================================
-   GET DISCORD INVITE CODE
+   GET INVITE CODE
 ========================================================= */
 
-function getInviteCode(url){
+function getInviteCode(url) {
 
-    try{
+    try {
 
         const parsed =
             new URL(url);
@@ -2743,11 +2467,9 @@ function getInviteCode(url){
                 .split("/")
                 .filter(Boolean);
 
-        return parts[
-            parts.length - 1
-        ];
+        return parts[parts.length - 1] || "";
 
-    }catch(error){
+    } catch {
 
         return "";
 
@@ -2757,10 +2479,10 @@ function getInviteCode(url){
 
 
 /* =========================================================
-   DISCORD SYNC
+   DISCORD API
 ========================================================= */
 
-async function syncDiscord(){
+async function syncDiscord() {
 
     const code =
         getInviteCode(
@@ -2768,30 +2490,24 @@ async function syncDiscord(){
         );
 
 
-    if(!code){
+    if (!code) {
 
-        setStatus(
-            "INVALID INVITE"
-        );
+        setServerStatus("INVALID INVITE");
 
         return;
 
     }
 
 
-    try{
+    try {
 
         const response =
             await fetch(
-                "https://discord.com/api/v10/invites/"
-                +
-                encodeURIComponent(code)
-                +
-                "?with_counts=true"
+                `https://discord.com/api/v10/invites/${encodeURIComponent(code)}?with_counts=true`
             );
 
 
-        if(!response.ok){
+        if (!response.ok) {
 
             throw new Error(
                 "Discord API request failed"
@@ -2809,79 +2525,15 @@ async function syncDiscord(){
 
 
         /* =================================================
-           SERVER NAME
+           NAME
         ================================================= */
 
-        if(guild.name){
+        if (guild.name) {
 
             document.getElementById(
                 "serverName"
             ).textContent =
                 guild.name;
-
-
-            document.getElementById(
-                "heroServerName"
-            ).textContent =
-                guild.name;
-
-        }
-
-
-        /* =================================================
-           MEMBERS
-        ================================================= */
-
-        const total =
-            data.approximate_member_count;
-
-
-        const online =
-            data.approximate_presence_count;
-
-
-        if(
-            total !== undefined &&
-            total !== null
-        ){
-
-            const formatted =
-                Number(total)
-                    .toLocaleString();
-
-            document.getElementById(
-                "totalMembers"
-            ).textContent =
-                formatted;
-
-
-            document.getElementById(
-                "heroMembers"
-            ).textContent =
-                formatted;
-
-        }
-
-
-        if(
-            online !== undefined &&
-            online !== null
-        ){
-
-            const formatted =
-                Number(online)
-                    .toLocaleString();
-
-            document.getElementById(
-                "onlineMembers"
-            ).textContent =
-                formatted;
-
-
-            document.getElementById(
-                "heroOnline"
-            ).textContent =
-                formatted;
 
         }
 
@@ -2890,53 +2542,70 @@ async function syncDiscord(){
            DESCRIPTION
         ================================================= */
 
-        const description =
-            guild.description
-            ||
-            "A place to talk, play, connect and belong.";
-
-
         document.getElementById(
             "serverDescription"
         ).textContent =
-            description;
+            guild.description ||
+            "A place to talk, play, connect and belong.";
 
 
-        document.getElementById(
-            "heroDescription"
-        ).textContent =
-            description;
+        /* =================================================
+           MEMBER COUNT
+        ================================================= */
+
+        if (
+            data.approximate_member_count !== undefined
+        ) {
+
+            document.getElementById(
+                "totalMembers"
+            ).textContent =
+                Number(
+                    data.approximate_member_count
+                ).toLocaleString();
+
+        }
+
+
+        /* =================================================
+           ONLINE COUNT
+        ================================================= */
+
+        if (
+            data.approximate_presence_count !== undefined
+        ) {
+
+            document.getElementById(
+                "onlineMembers"
+            ).textContent =
+                Number(
+                    data.approximate_presence_count
+                ).toLocaleString();
+
+        }
 
 
         /* =================================================
            SERVER ICON
         ================================================= */
 
-        if(
+        if (
             guild.id &&
             guild.icon
-        ){
+        ) {
 
-            const extension =
+            const iconExtension =
                 guild.icon.startsWith("a_")
-                ?
-                "gif"
-                :
-                "png";
+                    ? "gif"
+                    : "png";
 
 
             const iconURL =
-                `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${extension}?size=256`;
+                `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${iconExtension}?size=512`;
 
 
             document.getElementById(
                 "serverIcon"
-            ).src =
-                iconURL;
-
-
-            document.getElementById(
-                "heroServerIcon"
             ).src =
                 iconURL;
 
@@ -2945,42 +2614,45 @@ async function syncDiscord(){
 
         /* =================================================
            SERVER BANNER
+           
+           Discord invite may return banner hash.
+           
+           If it doesn't, use fallbackBanner.
         ================================================= */
 
-        if(
+        let bannerURL =
+            CONFIG.fallbackBanner;
+
+
+        if (
             guild.id &&
             guild.banner
-        ){
+        ) {
 
-            const extension =
+            const bannerExtension =
                 guild.banner.startsWith("a_")
-                ?
-                "gif"
-                :
-                "png";
+                    ? "gif"
+                    : "png";
 
 
-            const bannerURL =
-                `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}.${extension}?size=1024`;
-
-
-            document.getElementById(
-                "serverBanner"
-            ).src =
-                bannerURL;
+            bannerURL =
+                `https://cdn.discordapp.com/banners/${guild.id}/${guild.banner}.${bannerExtension}?size=1024`;
 
         }
-        else{
 
-            /*
-             Server has no Discord banner.
-             Use a clean visual fallback.
-            */
 
-            document.getElementById(
-                "serverBanner"
-            ).style.display =
-                "none";
+        if (bannerURL) {
+
+            const banner =
+                document.getElementById(
+                    "serverBanner"
+                );
+
+            banner.src =
+                bannerURL;
+
+            banner.style.display =
+                "block";
 
         }
 
@@ -2989,22 +2661,17 @@ async function syncDiscord(){
            STATUS
         ================================================= */
 
-        setStatus(
-            "ONLINE"
-        );
+        setServerStatus("LIVE");
 
 
-    }catch(error){
+    } catch (error) {
 
         console.error(
-            "NOBOGOTO Discord Sync:",
+            "NOBOGOTO Discord Sync Error:",
             error
         );
 
-
-        setStatus(
-            "SYNC ERROR"
-        );
+        setServerStatus("SYNC ERROR");
 
     }
 
@@ -3012,21 +2679,15 @@ async function syncDiscord(){
 
 
 /* =========================================================
-   STATUS
+   SERVER STATUS
 ========================================================= */
 
-function setStatus(text){
+function setServerStatus(status) {
 
     document.getElementById(
         "serverStatus"
     ).textContent =
-        text;
-
-
-    document.getElementById(
-        "heroStatus"
-    ).textContent =
-        text;
+        status;
 
 }
 
@@ -3053,9 +2714,7 @@ setInterval(
 ========================================================= */
 
 document
-    .querySelectorAll(
-        ".faq-question"
-    )
+    .querySelectorAll(".faq-question")
     .forEach(button => {
 
         button.addEventListener(
@@ -3063,31 +2722,25 @@ document
             () => {
 
                 const item =
-                    button.parentElement;
+                    button.closest(".faq-item");
 
 
-                const active =
-                    item.classList.contains(
-                        "active"
-                    );
+                const isActive =
+                    item.classList.contains("active");
 
 
                 document
-                    .querySelectorAll(
-                        ".faq-item"
-                    )
-                    .forEach(
-                        element => {
+                    .querySelectorAll(".faq-item")
+                    .forEach(other => {
 
-                            element.classList.remove(
-                                "active"
-                            );
+                        other.classList.remove(
+                            "active"
+                        );
 
-                        }
-                    );
+                    });
 
 
-                if(!active){
+                if (!isActive) {
 
                     item.classList.add(
                         "active"
@@ -3107,42 +2760,36 @@ document
 
 const observer =
     new IntersectionObserver(
-
         entries => {
 
-            entries.forEach(
-                entry => {
+            entries.forEach(entry => {
 
-                    if(
-                        entry.isIntersecting
-                    ){
+                if (
+                    entry.isIntersecting
+                ) {
 
-                        entry.target
-                            .classList
-                            .add("visible");
-
-                    }
+                    entry.target.classList.add(
+                        "visible"
+                    );
 
                 }
-            );
+
+            });
 
         },
-
         {
-            threshold:.08
+            threshold: 0.08
         }
-
     );
 
 
 document
-    .querySelectorAll(
-        ".reveal"
-    )
-    .forEach(
-        element =>
-        observer.observe(element)
-    );
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
 
 
 /* =========================================================
@@ -3157,47 +2804,17 @@ window.addEventListener(
             () => {
 
                 document
-                    .getElementById(
-                        "loader"
-                    )
-                    .classList
-                    .add("hide");
+                    .getElementById("loader")
+                    .classList.add("hide");
 
             },
-            1200
+            1100
         );
 
     }
 );
 
-
-/* =========================================================
-   IMAGE ERROR HANDLING
-========================================================= */
-
-document
-    .querySelectorAll("img")
-    .forEach(img => {
-
-        img.addEventListener(
-            "error",
-            () => {
-
-                if(
-                    img.id === "serverBanner"
-                ){
-
-                    img.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
-    });
-
 </script>
 
 </body>
-   </html>
+    </html>
